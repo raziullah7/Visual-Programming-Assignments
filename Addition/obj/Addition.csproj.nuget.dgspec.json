@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\University Programming\\Semester4\\Addition\\Addition.csproj": {}
+    "F:\\University Programming\\Semester4\\Visual Programming Assignments\\Addition\\Addition.csproj": {}
   },
   "projects": {
-    "F:\\University Programming\\Semester4\\Addition\\Addition.csproj": {
+    "F:\\University Programming\\Semester4\\Visual Programming Assignments\\Addition\\Addition.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\University Programming\\Semester4\\Addition\\Addition.csproj",
+        "projectUniqueName": "F:\\University Programming\\Semester4\\Visual Programming Assignments\\Addition\\Addition.csproj",
         "projectName": "Addition",
-        "projectPath": "F:\\University Programming\\Semester4\\Addition\\Addition.csproj",
+        "projectPath": "F:\\University Programming\\Semester4\\Visual Programming Assignments\\Addition\\Addition.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "F:\\University Programming\\Semester4\\Addition\\obj\\",
+        "outputPath": "F:\\University Programming\\Semester4\\Visual Programming Assignments\\Addition\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
