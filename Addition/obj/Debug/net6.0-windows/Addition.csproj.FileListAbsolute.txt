@@ -1,0 +1,17 @@
+F:\University Programming\Semester4\Addition\bin\Debug\net6.0-windows\Addition.exe
+F:\University Programming\Semester4\Addition\bin\Debug\net6.0-windows\Addition.deps.json
+F:\University Programming\Semester4\Addition\bin\Debug\net6.0-windows\Addition.runtimeconfig.json
+F:\University Programming\Semester4\Addition\bin\Debug\net6.0-windows\Addition.dll
+F:\University Programming\Semester4\Addition\bin\Debug\net6.0-windows\Addition.pdb
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.csproj.AssemblyReference.cache
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.Form1.resources
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.csproj.GenerateResource.cache
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.GeneratedMSBuildEditorConfig.editorconfig
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.AssemblyInfoInputs.cache
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.AssemblyInfo.cs
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.csproj.CoreCompileInputs.cache
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.dll
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\refint\Addition.dll
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.pdb
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\Addition.genruntimeconfig.cache
+F:\University Programming\Semester4\Addition\obj\Debug\net6.0-windows\ref\Addition.dll
