@@ -366,3 +366,5 @@ FodyWeavers.xsd
 */.vs
 */bin
 */obj
+
+\Calculator\.vs
