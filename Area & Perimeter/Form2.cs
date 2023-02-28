@@ -10,42 +10,10 @@ using System.Windows.Forms;
 
 namespace Area___Perimeter
 {
-    // Triangle class
-    public class Triangle : Shape
-    {
-        // using three sides to solve area
-        // and perimeter
-        private double sideA;
-        private double sideB;
-        private double sideC;
-        // s = perimeter / 2
-        // semi-perimeter
-        private double s;
-        // constructor
-        public Triangle(double sideA, double sideB, double sideC)
-        {
-            this.sideA = sideA;
-            this.sideB = sideB;
-            this.sideC = sideC;
-            // computation
-            perimeter = sideA + sideB + sideC;
-            s = perimeter / 2;
-            area = Math.Sqrt(s * (s-sideA) * (s - sideB) * (s - sideC));
-        }
-        // area implemetation
-        public override void Area()
-        {
-            MessageBox.Show($"Area of Triangle = {area}");
-        }
-        // perimeter implementation
-        public override void Perimeter()
-        {
-            MessageBox.Show($"Perimeter of Triangle = {perimeter}");
-        }
-    }
     public partial class triangle_form : Form
     {
-        
+        double a, b, c;
+
         public triangle_form()
         {
             InitializeComponent();
@@ -53,7 +21,51 @@ namespace Area___Perimeter
 
         private void area_btn_Click(object sender, EventArgs e)
         {
+            Triangle triangle = new Triangle(a, b, c);
+            triangle.Area();
+        }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (a >= 0)
+            {
+                a = Convert.ToDouble(textBox1.Text);
+            }
+            else
+            {
+                Console.WriteLine("Value of A cannot be negative.");
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (b >= 0)
+            {
+                b = Convert.ToDouble(textBox2.Text);
+            }
+            else
+            {
+                Console.WriteLine("Value of B cannot be negative.");
+            }
+            
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (c >= 0)
+            {
+                c = Convert.ToDouble(textBox3.Text);
+            }
+            else
+            {
+                Console.WriteLine("Value of C cannot be negative.");
+            }
+        }
+
+        private void perimeter_btn_Click(object sender, EventArgs e)
+        {
+            Triangle triangle = new Triangle(a, b, c);
+            triangle.Perimeter();
         }
     }
 }

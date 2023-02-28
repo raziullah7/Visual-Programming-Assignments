@@ -45,6 +45,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(143, 23);
             textBox1.TabIndex = 0;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
@@ -52,6 +53,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(143, 23);
             textBox2.TabIndex = 1;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label1
             // 
@@ -89,6 +91,7 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(143, 23);
             textBox3.TabIndex = 5;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // label4
             // 
@@ -120,6 +123,7 @@
             perimeter_btn.TabIndex = 8;
             perimeter_btn.Text = "Perimeter";
             perimeter_btn.UseVisualStyleBackColor = true;
+            perimeter_btn.Click += perimeter_btn_Click;
             // 
             // triangle_form
             // 

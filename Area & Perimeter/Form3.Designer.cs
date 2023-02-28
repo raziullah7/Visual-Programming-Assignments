@@ -73,6 +73,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(152, 23);
             textBox1.TabIndex = 3;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
@@ -80,6 +81,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(152, 23);
             textBox2.TabIndex = 4;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // area_btn
             // 
@@ -101,6 +103,7 @@
             perimeter_btn.TabIndex = 6;
             perimeter_btn.Text = "Perimeter";
             perimeter_btn.UseVisualStyleBackColor = true;
+            perimeter_btn.Click += perimeter_btn_Click;
             // 
             // rectangle_form
             // 
