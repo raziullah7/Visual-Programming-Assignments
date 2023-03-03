@@ -8,7 +8,10 @@ namespace AbstractShape
         protected double area;
         protected double perimeter;
         public abstract void Area();
+        public abstract void Perimeter();
     }
+
+
     // Triangle class
     public class Triangle : Shape2
     {
@@ -24,18 +27,25 @@ namespace AbstractShape
             this.side1 = side1;
             this.side2 = side2;
             this.side3 = side3;
-            // computation
-            perimeter = side1 + side2 + side3;
-            s = perimeter / 2;
+            // computation of semi-perimeter
+            s = (side1 + side2 + side3) / 2;
         }
 
         // area method implementation
         public override void Area()
         {
-            area = Math.Sqrt(s * (s - side1) * (s - side2) * (s - side3));
-            Console.WriteLine($"Area of Triangle : {area}");
+            area = Math.Round(Math.Sqrt(s * (s - side1) * (s - side2) * (s - side3)), 2);
+            Console.WriteLine($"Area of Triangle : {area} unit sq.");
+        }
+        // perimeter method implementation
+        public override void Perimeter()
+        {
+            perimeter = side1 + side2 + side3;
+            Console.WriteLine($"Perimeter of Triangle : {perimeter} units");
         }
     }
+
+
     // Rectangle class
     public class Rectangle : Shape2
     {
@@ -43,28 +53,42 @@ namespace AbstractShape
         private double length;
         private double width;
 
+        // constructor
         public Rectangle(double length, double width)
         {
             this.length = length;
             this.width = width;
-            // computation
-            perimeter = 2 * (length + width);
         }
 
         // area method implementation
         public override void Area()
         {
-            area = length * width;
-            Console.WriteLine($"Area of Rectangle : {area}");
+            area = Math.Round(length * width, 2);
+            Console.WriteLine($"Area of Rectangle : {area} unit sq.");
+        }
+        // perimeter method implementation
+        public override void Perimeter()
+        {
+            perimeter = 2 * (length + width);
+            Console.WriteLine($"Perimeter of Rectangle : {perimeter} units");
         }
     }
+
+
     // main
     class Program
     {
         public static void Main()
         {
             Triangle triangle = new Triangle(5, 5, 5);
+            triangle.Area();
+            triangle.Perimeter();
 
+            Console.WriteLine("-----------------------------------");
+
+            Rectangle rectangle = new Rectangle(10, 10);
+            rectangle.Area();
+            rectangle.Perimeter();
         }
     }
 }
