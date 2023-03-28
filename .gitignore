@@ -9,6 +9,8 @@ Basic Console App/bin
 Calculator/obj
 Calculator/.vs
 Calculator/bin
+Calculator/.idea
+Calculator/Properties
 
 Jagged Array/obj
 Jagged Array/.vs
@@ -65,3 +67,7 @@ Multiple Inheritance (Diamond Problem)/bin
 Jagged Array Remastered/obj
 Jagged Array Remastered/.vs
 Jagged Array Remastered/bin
+
+Delegates/obj
+Delegates/.vs
+Delegates/bin

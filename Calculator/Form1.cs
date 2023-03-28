@@ -49,7 +49,8 @@ namespace Calculator__Assignment1_
         private void button5_Click(object sender, EventArgs e)
         {
             expression += "5";
-            textBox1.Text += "5";        }
+            textBox1.Text += "5";
+        }
 
         private void button6_Click(object sender, EventArgs e)
         {
