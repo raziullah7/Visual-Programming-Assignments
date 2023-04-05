@@ -65,23 +65,23 @@ namespace Forms_from_Code
 
         private void L1_DoubleClick(object? sender, EventArgs e)
         {
-            this.BackColor = Color.Aqua;
-            this.BackColor = Color.FromName("Aqua");
+            BackColor = Color.Aqua;
+            BackColor = Color.FromName("Aqua");
         }
 
         private void L2_DoubleClick(object? sender, EventArgs e)
         {
-            this.BackColor = Color.Red;
+            BackColor = Color.Red;
         }
 
         private void L3_DoubleClick(object? sender, EventArgs e)
         {
-            this.BackColor = Color.Purple;
+            BackColor = Color.Purple;
         }
 
         private void L4_DoubleClick(object? sender, EventArgs e)
         {
-            this.BackColor = Color.White;
+            BackColor = Color.White;
         }
     }
 }
