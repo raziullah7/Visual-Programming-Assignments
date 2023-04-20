@@ -66,7 +66,6 @@ namespace Forms_from_Code
         private void L1_DoubleClick(object? sender, EventArgs e)
         {
             BackColor = Color.Aqua;
-            BackColor = Color.FromName("Aqua");
         }
 
         private void L2_DoubleClick(object? sender, EventArgs e)
