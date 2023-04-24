@@ -5,7 +5,7 @@ namespace ADO.NET
 {
     public partial class Form1 : Form
     {
-        string conn = "Data Source = WORK-MACHINE\\SQLEXPRESS;" +
+        string conn = "Data Source = DESKTOP-B975C1K\\SQLEXPRESS;" +
             "Initial Catalog = Demo;" +
             "User Id = ;    Password = ;    Integrated Security = true;";
 
@@ -25,7 +25,7 @@ namespace ADO.NET
             // creating connection using conn string
             SqlConnection sqlconn = new SqlConnection(conn);
             // writing query
-            string query = "Insert into Record (Id, Name, Age) values (@id, @name, @age)";
+            string query = "Insert into STUDENT (Std_Id, Std_Name, Std_Age) values (@id, @name, @age)";
             SqlCommand cmd = new SqlCommand(query, sqlconn);
             // getting parameters from textboxes
             cmd.Parameters.AddWithValue("@id", textBox1.Text);
@@ -58,7 +58,7 @@ namespace ADO.NET
             // creating connection using conn string
             SqlConnection sqlconn = new SqlConnection(conn);
             // writing query
-            string query = "Update Record Set Name = @name, Age = @age where Id = @id";
+            string query = "Update STUDENT Set Std_Name = @name, Std_Age = @age where Std_Id = @id";
             SqlCommand cmd = new SqlCommand(query, sqlconn);
             // getting parameters from textboxes
             cmd.Parameters.AddWithValue("@id", textBox1.Text);
@@ -91,7 +91,7 @@ namespace ADO.NET
             // creating connection using conn string
             SqlConnection sqlconn = new SqlConnection(conn);
             // writing query
-            string query = "Delete from Record where Id = @id";
+            string query = "Delete from STUDENT where Std_Id = @id";
             SqlCommand cmd = new SqlCommand(query, sqlconn);
             // getting parameters from textboxes
             cmd.Parameters.AddWithValue("@id", textBox1.Text);
@@ -122,12 +122,12 @@ namespace ADO.NET
             // creating connection using conn string
             SqlConnection sqlconn = new SqlConnection(conn);
             // writing query
-            string query = "Select * from Record";
+            string query = "Select * from STUDENT";
             // connecting display button with grid
             SqlDataAdapter dataAdapter = new SqlDataAdapter(query, sqlconn);
             DataSet dataSet = new DataSet();
-            dataAdapter.Fill(dataSet, "Record");
-            dataGridView1.DataSource = dataSet.Tables["Record"];
+            dataAdapter.Fill(dataSet, "STUDENT");
+            dataGridView1.DataSource = dataSet.Tables["STUDENT"];
         }
     }
 }
