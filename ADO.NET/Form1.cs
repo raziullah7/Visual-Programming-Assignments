@@ -5,7 +5,7 @@ namespace ADO.NET
 {
     public partial class Form1 : Form
     {
-        string conn = "Data Source = DESKTOP-B975C1K\\SQLEXPRESS;" +
+        string conn = "Data Source = WARMACHINE\\SQLEXPRESS;" +
             "Initial Catalog = Demo;" +
             "User Id = ;    Password = ;    Integrated Security = true;";
 
