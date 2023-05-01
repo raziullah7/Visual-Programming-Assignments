@@ -64,7 +64,7 @@ namespace Music_Player_From_SQL_DB
         {
             // storing the sender of the datagridview to get which
             // specific row and cell gets clicked
-            DataGridView dataGridView = (DataGridView) sender;
+            DataGridView dataGridView = (DataGridView)sender;
 
             // getting row number
             int rowClicked = dataGridView.CurrentRow.Index;
