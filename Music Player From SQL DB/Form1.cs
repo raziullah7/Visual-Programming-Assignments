@@ -77,5 +77,22 @@ namespace Music_Player_From_SQL_DB
             // loading the thumbnail pic of the clicked row
             pictureBox1.Load(imageURL);
         }
+
+        // Add button in the "Add New Album" section of the form
+        private void add_btn_Click(object sender, EventArgs e)
+        {
+            Album album = new Album
+            {
+                AlbumName = txt_albumName.Text,
+                ArtistName = txt_artistName.Text,
+                Year = Int32.Parse(txt_year.Text),
+                ImageURL = txt_imageUrl.Text,
+                Description = txt_description.Text
+            };
+
+            AlbumsDAO albumsDAO = new AlbumsDAO();
+            int result = albumsDAO.addOneAlbum(album);
+            MessageBox.Show(result + " new row(s) inserted");
+        }
     }
 }

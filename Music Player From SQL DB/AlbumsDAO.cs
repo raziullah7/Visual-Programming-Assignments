@@ -99,5 +99,36 @@ namespace Music_Player_From_SQL_DB
             // returning results
             return searchedAlbums;
         }
+
+
+        internal int addOneAlbum(Album album)
+        {
+            // creating sql connection
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            // opening connection
+            connection.Open();
+
+            // writing the query
+            string query = "INSERT INTO `albums` (`ALBUM_NAME`, `ARTIST`, `YEAR`, `IMAGE_NAME`, `DESCRIPTION`) VALUES (@albumName, @artistName, @year, @imageURL, @Description)";
+
+            // creating sql command
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            // adjusting parameters AddWithValue("arbitraryName", realValue)
+            command.Parameters.AddWithValue("@albumName", album.AlbumName);
+            command.Parameters.AddWithValue("@artistName", album.ArtistName);
+            command.Parameters.AddWithValue("@year", album.Year);
+            command.Parameters.AddWithValue("@imageURL", album.ImageURL);
+            command.Parameters.AddWithValue("@description", album.Description);
+
+            // executing the command
+            int newRows = command.ExecuteNonQuery();
+
+            // closing connection
+            connection.Close();
+
+            // returning the result
+            return newRows;
+        }
     }
 }
