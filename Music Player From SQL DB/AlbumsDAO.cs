@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,6 @@ namespace Music_Player_From_SQL_DB
     // DAO stands for Data Access Object
     internal class AlbumsDAO
     {
-        //    // version 1 only contains fake data
-        //// no connection to actual db
-        //public List<Album> albums = new();
-
-            // version 2 for real data
-        // defining connection string and setting
         string connectionString = "datasource=localhost;port=3306;username=root;password=root;database=music;";
 
 
@@ -30,7 +25,8 @@ namespace Music_Player_From_SQL_DB
             // opening connection to SQL server
             connection.Open();
             // writing query to be run
-            MySqlCommand command = new MySqlCommand("SELECT ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS", connection);
+            MySqlCommand command = new MySqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS", connection);
+
             // getting the data using MySqlDataReader
             using (MySqlDataReader reader = command.ExecuteReader())
             {
@@ -60,16 +56,19 @@ namespace Music_Player_From_SQL_DB
         {
             // start with an empty list
             List<Album> searchedAlbums = new List<Album>();
+
             // make sql connection object
             MySqlConnection connection = new MySqlConnection(connectionString);
             // open sql connection
             connection.Open();
             // make query object and query the database
             MySqlCommand command = new MySqlCommand();
+
             // setting up query to protect from sql injections
-            command.CommandText = "SELECT ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS WHERE ALBUM_NAME like @searchTitle";
+            command.CommandText = "SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS WHERE ALBUM_NAME like @searchTitle";
             // making a variable to store items to be searched
             string searchable = "%" + title + "%";
+
             // replacing @searchTitle with the passed title
             command.Parameters.AddWithValue("@searchTitle", searchable);
             // making sql db connection with the sql command
@@ -129,6 +128,97 @@ namespace Music_Player_From_SQL_DB
 
             // returning the result
             return newRows;
+        }
+
+        
+        public List<Track> getTracksForAlbum(int albumID)
+        {
+            // empty list of tracks
+            List<Track> returnThese = new List<Track>();
+            // creating connection with server
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            // opening connection before making sqlCommand
+            connection.Open();
+
+            // making sqlCommand
+            MySqlCommand command = new MySqlCommand();
+            // adding query to sqlCommand
+            command.CommandText = "SELECT * FROM TRACKS WHERE albums_ID = @albumid";
+            
+            // @albumid is the parameter mentioned in the query
+            // we have to define that parameter, which we get from
+            // the parameter passed into the method
+            command.Parameters.AddWithValue("@albumid", albumID);
+            // giving the address of the mysqlconnection to mysqlcommand
+            command.Connection = connection;
+
+            // executing command and reading the result
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    // getting data track by track
+                    Track track = new Track
+                    {
+                        ID = reader.GetInt32(0),
+                        Name = reader.GetString(1),
+                        Number = reader.GetInt32(2),
+                        VideoURL = reader.GetString(3),
+                        Lyrics = reader.GetString(4)
+                    };
+                    returnThese.Add(track);
+                }
+            }
+            // closing connection
+            connection.Close();
+
+            // returning list of tracks
+            return returnThese;
+        }
+
+
+        public List<JObject> getTracksUsingJoins(int albumID)
+        {
+            // empty list of tracks
+            List<JObject> returnThese = new List<JObject>();
+            // creating connection with server
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            // opening connection before making sqlCommand
+            connection.Open();
+
+            // making sqlCommand
+            MySqlCommand command = new MySqlCommand();
+            // adding query to sqlCommand
+            command.CommandText = "SELECT TRACK_ID, albums.ALBUM_NAME as 'ALBUM_TITLE', `TRACK_TITLE`, `VIDEO_URL`, `TRACK_LYRICS` FROM `tracks` JOIN albums ON albums_ID = albums.ALBUM_ID WHERE ALBUM_ID = @albumid";
+
+            // @albumid is the parameter mentioned in the query
+            // we have to define that parameter, which we get from
+            // the parameter passed into the method
+            command.Parameters.AddWithValue("@albumid", albumID);
+            // giving the address of the mysqlconnection to mysqlcommand
+            command.Connection = connection;
+
+            // executing command and reading the result
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                
+                while (reader.Read())
+                {
+                    // getting data track my track
+                    JObject track = new JObject();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        track.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
+
+                    returnThese.Add(track);
+                }
+            }
+            // closing connection
+            connection.Close();
+
+            // returning list of tracks
+            return returnThese;
         }
     }
 }
