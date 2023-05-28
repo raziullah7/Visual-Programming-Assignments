@@ -78,7 +78,8 @@ namespace Online_Music_Player_From_SQL_DB
         {
             // storing the sender of the datagridview to get which
             // specific row and cell gets clicked
-            DataGridView dataGridView = (DataGridView)sender;
+            DataGridView dataGridView = sender as DataGridView;
+            //DataGridView dataGridView = (DataGridView)sender;
 
             // getting row number
             int rowClicked = dataGridView.CurrentRow.Index;
@@ -100,6 +101,15 @@ namespace Online_Music_Player_From_SQL_DB
             // getting the tracks for each respective album
             tracksBindingSource.DataSource = albums[rowClicked].Tracks;
             dataGridView2.DataSource = tracksBindingSource;
+
+            // making the first and second columns red and green respectively
+            DataGridViewRow row;
+            for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+            {
+                row = dataGridView.Rows[i];
+                row.Cells[0].Style = new DataGridViewCellStyle { BackColor = Color.Red };
+                row.Cells[1].Style = new DataGridViewCellStyle { BackColor = Color.Green };
+            }
 
             // if column number is 0, delete
             if (cellColumnNumber == 0)
@@ -148,5 +158,15 @@ namespace Online_Music_Player_From_SQL_DB
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {}
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e) {}
+
+        private void album_update_btn_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void album_delete_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

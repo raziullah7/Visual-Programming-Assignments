@@ -70,7 +70,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1074, 675);
+            this.tabControl1.Size = new System.Drawing.Size(1074, 596);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -84,7 +84,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1066, 642);
+            this.tabPage1.Size = new System.Drawing.Size(1066, 563);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "View Albums";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -143,7 +143,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1066, 642);
+            this.tabPage2.Size = new System.Drawing.Size(1066, 563);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CRUD Operations";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -279,6 +279,7 @@
             this.album_delete_btn.TabIndex = 13;
             this.album_delete_btn.Text = "Delete Album";
             this.album_delete_btn.UseVisualStyleBackColor = true;
+            this.album_delete_btn.Click += new System.EventHandler(this.album_delete_btn_Click);
             // 
             // album_update_btn
             // 
@@ -288,6 +289,7 @@
             this.album_update_btn.TabIndex = 12;
             this.album_update_btn.Text = "Update Album";
             this.album_update_btn.UseVisualStyleBackColor = true;
+            this.album_update_btn.Click += new System.EventHandler(this.album_update_btn_Click_1);
             // 
             // label6
             // 
@@ -303,7 +305,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1074, 676);
+            this.ClientSize = new System.Drawing.Size(1074, 599);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
