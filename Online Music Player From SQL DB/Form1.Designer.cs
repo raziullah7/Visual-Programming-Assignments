@@ -30,12 +30,16 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.album_delete_btn = new System.Windows.Forms.Button();
+            this.album_update_btn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.add_btn = new System.Windows.Forms.Button();
             this.txt_artistName = new System.Windows.Forms.TextBox();
@@ -48,18 +52,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.album_delete_btn = new System.Windows.Forms.Button();
-            this.album_update_btn = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.album_image = new System.Windows.Forms.PictureBox();
+            this.image_choose_btn = new System.Windows.Forms.Button();
+            this.image_upload_btn = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.album_image)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -70,7 +75,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1074, 596);
+            this.tabControl1.Size = new System.Drawing.Size(936, 582);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -84,10 +89,20 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1066, 563);
+            this.tabPage1.Size = new System.Drawing.Size(928, 549);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "View Albums";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(264, 326);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(90, 25);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Tracks:";
             // 
             // textBox1
             // 
@@ -100,7 +115,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(8, 303);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 299);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(250, 250);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -109,19 +125,21 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(264, 358);
+            this.dataGridView2.Location = new System.Drawing.Point(256, 354);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(794, 195);
+            this.dataGridView2.Size = new System.Drawing.Size(670, 195);
             this.dataGridView2.TabIndex = 9;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 47);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 47);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1050, 250);
+            this.dataGridView1.Size = new System.Drawing.Size(926, 250);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -143,13 +161,48 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1066, 563);
+            this.tabPage2.Size = new System.Drawing.Size(928, 549);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "CRUD Operations";
+            this.tabPage2.Text = "Operations";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.album_delete_btn);
+            this.groupBox2.Controls.Add(this.album_update_btn);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(782, 68);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(143, 283);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Album Actions";
+            // 
+            // album_delete_btn
+            // 
+            this.album_delete_btn.Location = new System.Drawing.Point(15, 117);
+            this.album_delete_btn.Name = "album_delete_btn";
+            this.album_delete_btn.Size = new System.Drawing.Size(120, 60);
+            this.album_delete_btn.TabIndex = 13;
+            this.album_delete_btn.Text = "Delete Album";
+            this.album_delete_btn.UseVisualStyleBackColor = true;
+            this.album_delete_btn.Click += new System.EventHandler(this.album_delete_btn_Click);
+            // 
+            // album_update_btn
+            // 
+            this.album_update_btn.Location = new System.Drawing.Point(15, 38);
+            this.album_update_btn.Name = "album_update_btn";
+            this.album_update_btn.Size = new System.Drawing.Size(120, 60);
+            this.album_update_btn.TabIndex = 12;
+            this.album_update_btn.Text = "Update Album";
+            this.album_update_btn.UseVisualStyleBackColor = true;
+            this.album_update_btn.Click += new System.EventHandler(this.album_update_btn_Click_1);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.image_upload_btn);
+            this.groupBox1.Controls.Add(this.image_choose_btn);
+            this.groupBox1.Controls.Add(this.album_image);
             this.groupBox1.Controls.Add(this.add_btn);
             this.groupBox1.Controls.Add(this.txt_artistName);
             this.groupBox1.Controls.Add(this.txt_description);
@@ -164,16 +217,16 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(48, 68);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(359, 283);
+            this.groupBox1.Size = new System.Drawing.Size(695, 378);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add Album";
             // 
             // add_btn
             // 
-            this.add_btn.Location = new System.Drawing.Point(60, 227);
+            this.add_btn.Location = new System.Drawing.Point(132, 221);
             this.add_btn.Name = "add_btn";
-            this.add_btn.Size = new System.Drawing.Size(100, 38);
+            this.add_btn.Size = new System.Drawing.Size(100, 36);
             this.add_btn.TabIndex = 10;
             this.add_btn.Text = "Add";
             this.add_btn.UseVisualStyleBackColor = true;
@@ -259,53 +312,48 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Album Name";
             // 
-            // groupBox2
+            // album_image
             // 
-            this.groupBox2.Controls.Add(this.album_delete_btn);
-            this.groupBox2.Controls.Add(this.album_update_btn);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(462, 196);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(143, 250);
-            this.groupBox2.TabIndex = 13;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Album Actions";
+            this.album_image.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.album_image.Location = new System.Drawing.Point(413, 7);
+            this.album_image.Name = "album_image";
+            this.album_image.Size = new System.Drawing.Size(250, 250);
+            this.album_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.album_image.TabIndex = 11;
+            this.album_image.TabStop = false;
             // 
-            // album_delete_btn
+            // image_choose_btn
             // 
-            this.album_delete_btn.Location = new System.Drawing.Point(15, 117);
-            this.album_delete_btn.Name = "album_delete_btn";
-            this.album_delete_btn.Size = new System.Drawing.Size(120, 60);
-            this.album_delete_btn.TabIndex = 13;
-            this.album_delete_btn.Text = "Delete Album";
-            this.album_delete_btn.UseVisualStyleBackColor = true;
-            this.album_delete_btn.Click += new System.EventHandler(this.album_delete_btn_Click);
+            this.image_choose_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.image_choose_btn.Location = new System.Drawing.Point(413, 279);
+            this.image_choose_btn.Name = "image_choose_btn";
+            this.image_choose_btn.Size = new System.Drawing.Size(120, 39);
+            this.image_choose_btn.TabIndex = 12;
+            this.image_choose_btn.Text = "Choose Image";
+            this.image_choose_btn.UseVisualStyleBackColor = true;
+            this.image_choose_btn.Click += new System.EventHandler(this.image_choose_btn_Click);
             // 
-            // album_update_btn
+            // image_upload_btn
             // 
-            this.album_update_btn.Location = new System.Drawing.Point(15, 38);
-            this.album_update_btn.Name = "album_update_btn";
-            this.album_update_btn.Size = new System.Drawing.Size(120, 60);
-            this.album_update_btn.TabIndex = 12;
-            this.album_update_btn.Text = "Update Album";
-            this.album_update_btn.UseVisualStyleBackColor = true;
-            this.album_update_btn.Click += new System.EventHandler(this.album_update_btn_Click_1);
+            this.image_upload_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.image_upload_btn.Location = new System.Drawing.Point(543, 279);
+            this.image_upload_btn.Name = "image_upload_btn";
+            this.image_upload_btn.Size = new System.Drawing.Size(120, 39);
+            this.image_upload_btn.TabIndex = 13;
+            this.image_upload_btn.Text = "Upload";
+            this.image_upload_btn.UseVisualStyleBackColor = true;
+            this.image_upload_btn.Click += new System.EventHandler(this.image_upload_btn_Click);
             // 
-            // label6
+            // backgroundWorker1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(264, 330);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 25);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Tracks:";
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1074, 599);
+            this.ClientSize = new System.Drawing.Size(930, 605);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -316,9 +364,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.album_image)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -349,6 +398,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button album_delete_btn;
         private System.Windows.Forms.Button album_update_btn;
+        private System.Windows.Forms.PictureBox album_image;
+        private System.Windows.Forms.Button image_upload_btn;
+        private System.Windows.Forms.Button image_choose_btn;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
