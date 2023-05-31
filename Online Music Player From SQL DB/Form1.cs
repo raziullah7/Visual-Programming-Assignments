@@ -21,21 +21,10 @@ namespace Online_Music_Player_From_SQL_DB
         // to reduce DB fetching
         List<Album> albums = new List<Album>();
 
-
-        //---------------------------------------------------------------------
-                        /*SENSITIVE INFORMATION*/
-        // setting up Cloudinary
-        public Cloudinary cloudinary;
-        public const string CLOUD_NAME = "dst7nfsyw";
-        public const string API_KEY = "238557421262677";
-        public const string API_SECRET = "Isf4qbBrGLs8fcBIMlDKEHr3tUI";
-        string imagePath;
-        //---------------------------------------------------------------------
-
-
         public Form1()
         {
             InitializeComponent();
+            
             // getTheme();
 
             // adding delete button in every row of albums grid
@@ -77,7 +66,7 @@ namespace Online_Music_Player_From_SQL_DB
             pictureBox1.Load(albums[0].ImageURL);
         }
 
-        // "Search" button
+        // "Search Album" button
         private void button2_Click_1(object sender, EventArgs e)
         {
             // creating album data access object
@@ -116,20 +105,7 @@ namespace Online_Music_Player_From_SQL_DB
             // getting the tracks for each respective album
             tracksBindingSource.DataSource = albums[rowClicked].Tracks;
             dataGridView2.DataSource = tracksBindingSource;
-
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-
-            // making the first and second columns red and green respectively
-            DataGridViewRow row;
-            for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
-            {
-                row = dataGridView.Rows[i];
-                row.Cells[0].Style = new DataGridViewCellStyle { BackColor = Color.Red };
-                row.Cells[1].Style = new DataGridViewCellStyle { BackColor = Color.Green };
-            }
             
-            
-
             // if column number is 0, delete
             if (cellColumnNumber == 0)
             {
@@ -140,121 +116,40 @@ namespace Online_Music_Player_From_SQL_DB
             // if column number is 1, update
             else if (cellColumnNumber == 1)
             {
-                MessageBox.Show($"Are you sure you want to update the following:" +
-                    $"\nAlbumName : {dataGridView.Rows[rowClicked].Cells[3].Value}" +
-                    $"\nArtistName : {dataGridView.Rows[rowClicked].Cells[4].Value}");
+                // making the form
+                UpdateForm updateForm = new UpdateForm();
+                updateForm.Text = "Updating An Album";
+                // passing the album which was clicked
+                ExportAlbum.exportAlbum = albums[rowClicked];
+                // showing the form
+                updateForm.ShowDialog();
             }
         }
 
-        // Add button in the "Add Album" section of the form
+        // "Add Album" button
         private void add_btn_Click_1(object sender, EventArgs e)
         {
-            Album album = new Album
-            {
-                AlbumName = txt_albumName.Text,
-                ArtistName = txt_artistName.Text,
-                Year = Int32.Parse(txt_year.Text),
-                ImageURL = txt_imageUrl.Text,
-                Description = txt_description.Text
-            };
-
-            AlbumsDAO albumsDAO = new AlbumsDAO();
-            int result = albumsDAO.addOneAlbum(album);
-            MessageBox.Show(result + " new row(s) inserted");
-        }
-
-        // "Update Album" button
-        private void album_update_btn_Click(object sender, EventArgs e)
-        {
-            // making UpdateForm.cs appear when "Update Album" is clicked
-            var UpdateForm = new UpdateForm();
-            UpdateForm.Show();
+            AddForm addForm = new AddForm();
+            addForm.Text = "Adding New Album";
+            addForm.Show();
         }
 
 
-
-
-        //----------------------------------------------------------------------------
-        // for accessing the Cloudinary cloud account
-        private void CloudinaryStorage()
-        {
-            // making account to look up against
-            Account account = new Account(CLOUD_NAME, API_KEY, API_SECRET);
-            // assigning the global scope cloudinary object
-            cloudinary = new Cloudinary(account);
-            // uploading the image using the path
-            UploadImage(imagePath);
-        }
-
-        // for the actual uploading to Cloudinary
-        private void UploadImage(string imagePath)
-        {
-            var uploadParams = new ImageUploadParams()
-            {
-                File = new FileDescription(imagePath)
-            };
-            cloudinary.Upload(uploadParams);
-        }
-
-        // button used to select image from the Windows Explorer
-        // "Choose Image"
-        private void image_choose_btn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                // making filters for the types of files
-                // dialog.Filter = "JPG files(*.jpg)|*.jpg|PNG Files(*.png)|*.png|All Files(*.*)|*.*";
-                dialog.Filter = "Image | *.jpg;*.jpeg;*.png";
-                // checking if the OpenFileDialog works
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    // assigning the image
-                    album_image.Image = new Bitmap(dialog.FileName);
-                    // getting the local path to image
-                    imagePath = dialog.FileName;
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("An Error Occur", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        // backgroudworker sets up the connection with Cloudinary
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            CloudinaryStorage();
-        }
-
-        // show "Complete!" when task completed
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            MessageBox.Show("Complete!");
-        }
-
-        // "Upload" button under the image
-        private void image_upload_btn_Click(object sender, EventArgs e)
-        {
-            backgroundWorker1.RunWorkerAsync();
-        }
-
-
-        //----------------------------------------------------------------------------
+        // -------------------------------------------------------------------------- //
         private void textBox1_TextChanged(object sender, EventArgs e) { }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {}
-
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e) {}
 
-        private void album_update_btn_Click_1(object sender, EventArgs e)
-        {
 
+        private void Form1_Load(object sender, EventArgs e) {
+            // making the first and second columns of dataGridView1 red and green respectively
+            DataGridViewRow row;
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            {
+                row = dataGridView1.Rows[i];
+                row.Cells[0].Style = new DataGridViewCellStyle { BackColor = Color.Red };
+                row.Cells[1].Style = new DataGridViewCellStyle { BackColor = Color.Green };
+            }
         }
-
-        private void album_delete_btn_Click(object sender, EventArgs e)
-        {
-
-        }    
     }
 }

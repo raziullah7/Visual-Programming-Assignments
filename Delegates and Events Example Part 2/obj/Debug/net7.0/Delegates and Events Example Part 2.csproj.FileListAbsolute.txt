@@ -1,0 +1,15 @@
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\bin\Debug\net7.0\Delegates and Events Example Part 2.exe
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\bin\Debug\net7.0\Delegates and Events Example Part 2.deps.json
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\bin\Debug\net7.0\Delegates and Events Example Part 2.runtimeconfig.json
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\bin\Debug\net7.0\Delegates and Events Example Part 2.dll
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\bin\Debug\net7.0\Delegates and Events Example Part 2.pdb
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\Delegates and Events Example Part 2.csproj.AssemblyReference.cache
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\Delegates and Events Example Part 2.GeneratedMSBuildEditorConfig.editorconfig
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\Delegates and Events Example Part 2.AssemblyInfoInputs.cache
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\Delegates and Events Example Part 2.AssemblyInfo.cs
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\Delegates and Events Example Part 2.csproj.CoreCompileInputs.cache
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\Delegates and Events Example Part 2.dll
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\refint\Delegates and Events Example Part 2.dll
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\Delegates and Events Example Part 2.pdb
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\Delegates and Events Example Part 2.genruntimeconfig.cache
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example Part 2\obj\Debug\net7.0\ref\Delegates and Events Example Part 2.dll

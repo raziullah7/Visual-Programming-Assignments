@@ -1,0 +1,15 @@
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\bin\Debug\net7.0\Delegates and Events Example.exe
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\bin\Debug\net7.0\Delegates and Events Example.deps.json
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\bin\Debug\net7.0\Delegates and Events Example.runtimeconfig.json
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\bin\Debug\net7.0\Delegates and Events Example.dll
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\bin\Debug\net7.0\Delegates and Events Example.pdb
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\Delegates and Events Example.csproj.AssemblyReference.cache
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\Delegates and Events Example.GeneratedMSBuildEditorConfig.editorconfig
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\Delegates and Events Example.AssemblyInfoInputs.cache
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\Delegates and Events Example.AssemblyInfo.cs
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\Delegates and Events Example.csproj.CoreCompileInputs.cache
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\Delegates and Events Example.dll
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\refint\Delegates and Events Example.dll
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\Delegates and Events Example.pdb
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\Delegates and Events Example.genruntimeconfig.cache
+D:\WORK\Visual-Programming-Assignments\Delegates and Events Example\obj\Debug\net7.0\ref\Delegates and Events Example.dll

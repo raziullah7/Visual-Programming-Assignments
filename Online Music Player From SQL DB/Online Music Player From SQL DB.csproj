@@ -100,8 +100,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Album.cs" />
     <Compile Include="AlbumDAO.cs" />
+    <Compile Include="ExportAlbum.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +124,9 @@
     <Compile Include="UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddForm.resx">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
