@@ -30,7 +30,6 @@
         {
             this.label4 = new System.Windows.Forms.Label();
             this.album_image = new System.Windows.Forms.PictureBox();
-            this.image_upload_btn = new System.Windows.Forms.Button();
             this.image_choose_btn = new System.Windows.Forms.Button();
             this.update_btn = new System.Windows.Forms.Button();
             this.txt_artistName = new System.Windows.Forms.TextBox();
@@ -41,6 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.album_image)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,16 +64,6 @@
             this.album_image.TabIndex = 39;
             this.album_image.TabStop = false;
             // 
-            // image_upload_btn
-            // 
-            this.image_upload_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.image_upload_btn.Location = new System.Drawing.Point(629, 365);
-            this.image_upload_btn.Name = "image_upload_btn";
-            this.image_upload_btn.Size = new System.Drawing.Size(130, 39);
-            this.image_upload_btn.TabIndex = 38;
-            this.image_upload_btn.Text = "Upload";
-            this.image_upload_btn.UseVisualStyleBackColor = true;
-            // 
             // image_choose_btn
             // 
             this.image_choose_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -83,6 +73,7 @@
             this.image_choose_btn.TabIndex = 37;
             this.image_choose_btn.Text = "Change Image";
             this.image_choose_btn.UseVisualStyleBackColor = true;
+            this.image_choose_btn.Click += new System.EventHandler(this.image_choose_btn_Click);
             // 
             // update_btn
             // 
@@ -93,6 +84,7 @@
             this.update_btn.TabIndex = 36;
             this.update_btn.Text = "Update";
             this.update_btn.UseVisualStyleBackColor = true;
+            this.update_btn.Click += new System.EventHandler(this.update_btn_Click);
             // 
             // txt_artistName
             // 
@@ -167,6 +159,11 @@
             this.label1.TabIndex = 28;
             this.label1.Text = "Album Name";
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // UpdateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,7 +171,6 @@
             this.ClientSize = new System.Drawing.Size(771, 418);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.album_image);
-            this.Controls.Add(this.image_upload_btn);
             this.Controls.Add(this.image_choose_btn);
             this.Controls.Add(this.update_btn);
             this.Controls.Add(this.txt_artistName);
@@ -198,7 +194,6 @@
 
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox album_image;
-        private System.Windows.Forms.Button image_upload_btn;
         private System.Windows.Forms.Button image_choose_btn;
         private System.Windows.Forms.Button update_btn;
         private System.Windows.Forms.TextBox txt_artistName;
@@ -209,5 +204,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
