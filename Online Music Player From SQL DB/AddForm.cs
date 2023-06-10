@@ -37,6 +37,8 @@ namespace Online_Music_Player_From_SQL_DB
         {
             try
             {
+                CloudinaryStorage();
+
                 Album album = new Album
                 {
                     AlbumName = txt_albumName.Text,
@@ -44,7 +46,7 @@ namespace Online_Music_Player_From_SQL_DB
                     Year = Int32.Parse(txt_year.Text),
                     ImageURL = imageSecureURL,
                     Description = txt_description.Text
-                };
+                };  
 
                 AlbumsDAO albumsDAO = new AlbumsDAO();
                 int result = albumsDAO.addOneAlbum(album);
@@ -53,10 +55,10 @@ namespace Online_Music_Player_From_SQL_DB
             catch (Exception ex)
             {
                 MessageBox.Show("Null or empty fields are not allowed!\n" + ex.Message);
-                txt_albumName.Text = string.Empty;
-                txt_artistName.Text = string.Empty;
-                txt_year.Text = string.Empty;
-                txt_description.Text = string.Empty;
+                //txt_albumName.Text = string.Empty;
+                //txt_artistName.Text = string.Empty;
+                //txt_year.Text = string.Empty;
+                //txt_description.Text = string.Empty;
             }
         }
 
@@ -85,13 +87,13 @@ namespace Online_Music_Player_From_SQL_DB
         // backgroudworker sets up the connection with Cloudinary
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            CloudinaryStorage();
+            // CloudinaryStorage();
         }
 
         // show "Complete!" when task completed
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Complete!");
+            // MessageBox.Show("Complete!");
         }
 
         // button used to select image from the Windows Explorer

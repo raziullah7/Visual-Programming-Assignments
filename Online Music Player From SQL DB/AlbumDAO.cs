@@ -13,7 +13,7 @@ namespace Online_Music_Player_From_SQL_DB
     // DAO stands for Data Access Object
     internal class AlbumsDAO
     {
-        string connectionString = "server=localhost;username=root;password=root;database=music;";
+        string connectionString = "server=localhost;port=3306;username=root;password=root;database=music;";
 
 
         // making method to get all lists
@@ -27,7 +27,8 @@ namespace Online_Music_Player_From_SQL_DB
             // opening connection to SQL server
             connection.Open();
             // writing query to be run
-            MySqlCommand command = new MySqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS", connection);
+            // MySqlCommand command = new MySqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS", connection);
+            MySqlCommand command = new MySqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM FAKE_ALBUMS", connection);
 
             // getting the data using MySqlDataReader
             using (MySqlDataReader reader = command.ExecuteReader())
@@ -105,15 +106,17 @@ namespace Online_Music_Player_From_SQL_DB
         }
 
 
-        internal int addOneAlbum(Album album)
+        public int addOneAlbum(Album album)
         {
             // creating sql connection
             MySqlConnection connection = new MySqlConnection(connectionString);
             // opening connection
             connection.Open();
 
-            // writing the query
-            string query = "INSERT INTO `albums` (`ALBUM_NAME`, `ARTIST`, `YEAR`, `IMAGE_NAME`, `DESCRIPTION`) VALUES (@albumName, @artistName, @year, @imageURL, @Description)";
+            // writing the query (original albums table)
+            //string query = "INSERT INTO `albums` (`ALBUM_NAME`, `ARTIST`, `YEAR`, `IMAGE_NAME`, `DESCRIPTION`) VALUES (@albumName, @artistName, @year, @imageURL, @description)";
+            // using a copy of albums table for testing
+            string query = "INSERT INTO `fake_albums` (`ALBUM_NAME`, `ARTIST`, `YEAR`, `IMAGE_NAME`, `DESCRIPTION`) VALUES (@albumName, @artistName, @year, @imageURL, @description)";
 
             // creating sql command
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -135,6 +138,39 @@ namespace Online_Music_Player_From_SQL_DB
             return newRows;
         }
 
+        public int updateOneAlbum(Album album)
+        {
+            // creating sql connection
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            // opening connection
+            connection.Open();
+
+            // writing the query (original albums table)
+            // string query = "UPDATE `albums` SET `ALBUM_NAME` = @albumName, `ARTIST` = @artistName, `YEAR` = @year, `IMAGE_NAME` = @imageURL, `DESCRIPTION` = @description";
+            string query = "UPDATE `fake_albums` SET `ALBUM_NAME`=@albumName, `ARTIST`=@artistName,`YEAR`=@year,`IMAGE_NAME`=@imageURL,`DESCRIPTION`=@description WHERE `ALBUM_ID`=@albumId";
+            // using a copy of albums table for testing
+            // string query = "UPDATE `fake_albums` SET `ALBUM_NAME` = @albumName, `ARTIST` = @artistName, `YEAR` = @year, `IMAGE_NAME` = @imageURL, `DESCRIPTION` = @description";
+
+            // creating sql command
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            // adjusting parameters AddWithValue("arbitraryName", realValue)
+            command.Parameters.AddWithValue("@albumId", album.ID);
+            command.Parameters.AddWithValue("@albumName", album.AlbumName);
+            command.Parameters.AddWithValue("@artistName", album.ArtistName);
+            command.Parameters.AddWithValue("@year", album.Year);
+            command.Parameters.AddWithValue("@imageURL", album.ImageURL);
+            command.Parameters.AddWithValue("@description", album.Description);
+
+            // executing the command
+            int updatedRows = command.ExecuteNonQuery();
+
+            // closing connection
+            connection.Close();
+
+            // returning the result
+            return updatedRows;
+        }
 
         public List<Track> getTracksForAlbum(int albumID)
         {

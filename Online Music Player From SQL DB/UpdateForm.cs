@@ -25,11 +25,12 @@ namespace Online_Music_Player_From_SQL_DB
         public const string API_SECRET = "Isf4qbBrGLs8fcBIMlDKEHr3tUI";
         string imagePath;
         string imageSecureURL;
+        bool isChooseImageClicked = false;
+
         //---------------------------------------------------------------------
 
-        // creating album data access object
-        AlbumsDAO albumsDAO = new AlbumsDAO();
-        
+
+
         public UpdateForm()
         {
             InitializeComponent();
@@ -45,12 +46,15 @@ namespace Online_Music_Player_From_SQL_DB
             txt_year.Text = album.Year.ToString();
             album_image.Load(album.ImageURL);
             txt_description.Text = album.Description;
+
+
         }
 
         // button used to select image from the Windows Explorer
         // "Choose Image" under the picture box
         private void image_choose_btn_Click(object sender, EventArgs e)
         {
+            isChooseImageClicked = true;
             try
             {
                 OpenFileDialog dialog = new OpenFileDialog();
@@ -75,65 +79,73 @@ namespace Online_Music_Player_From_SQL_DB
         // update btn
         private void update_btn_Click(object sender, EventArgs e)
         {
-            
+            string url = CloudinaryStorage();
+
+            // getting passed album
             Album passedAlbum = ExportAlbum.exportAlbum;
+
+            // getting any changes from the textboxes 
             Album album = new Album
             {
                 AlbumName = txt_albumName.Text,
                 ArtistName = txt_artistName.Text,
                 Year = Int32.Parse(txt_year.Text),
-                ImageURL = imageSecureURL,
+                ImageURL = imageSecureURL == string.Empty? passedAlbum.ImageURL: imageSecureURL,
                 Description = txt_description.Text
             };
 
-            Album newAlbum = new Album();
-            if (!(passedAlbum.AlbumName.Equals(album.AlbumName)))
-            {
-                newAlbum.AlbumName = album.AlbumName;
-            }
-            if (!(passedAlbum.ArtistName.Equals(album.ArtistName)))
-            {
-                newAlbum.ArtistName = album.ArtistName;
-            }
-            if (passedAlbum.Year == album.Year)
-            {
-                newAlbum.Year = album.Year;
-            }
-            if (!(passedAlbum.Description.Equals(album.Description)))
-            {
-                newAlbum.Description = album.Description;
-            }
-            if (!(passedAlbum.ArtistName.Equals(album.ArtistName)))
-            {
+            //// this was made initially to not change the values if 
+            //// as empty string is passed into the textbox 
+            //Album album = new Album
+            //{
+            //    AlbumName = txt_albumName.Text == string.Empty ? passedAlbum.AlbumName : txt_albumName.Text,
+            //    ArtistName = txt_artistName.Text == string.Empty ? passedAlbum.ArtistName : txt_artistName.Text,
+            //    Year = txt_year.Text == string.Empty ? passedAlbum.Year : Int32.Parse(txt_year.Text),
+            //    ImageURL = imageSecureURL == string.Empty ? passedAlbum.ImageURL : imageSecureURL,
+            //    Description = txt_description.Text == string.Empty ? passedAlbum.Description : txt_description.Text
+            //};
 
-            }
+            //try
+            //{
+            //    // creating album data access object
+            //    AlbumsDAO albumsDAO = new AlbumsDAO();
+            //    // update the album
+            //    int result = albumsDAO.updateOneAlbum(album);
+            //    // print the number of updated rows
+            //    MessageBox.Show(result + " row(s) updated.");
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("An internal error occured.\nPlease try again after a few minutes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
-            if (passedAlbum.AlbumName == album.AlbumName && passedAlbum.ArtistName == album.ArtistName && passedAlbum.Year == album.Year && passedAlbum.ImageURL == album.ImageURL && passedAlbum.Description == album.Description)
-            {
-                MessageBox.Show("0 Albums Updated!");
-            }
-            else
-            {
-                //Album newAlbum = new Album
-                //{
-                //    AlbumName = txt_albumName.Text,
-                //    ArtistName = txt_artistName.Text,
-                //    Year = Int32.Parse(txt_year.Text),
-                //    ImageURL = imageSecureURL,
-                //    Description = txt_description.Text
-                //};
-            }
+            // creating album data access object
+            AlbumsDAO albumsDAO = new AlbumsDAO();
+
+            // update the album
+            int result = albumsDAO.updateOneAlbum(album);
+            // print the number of updated rows
+            MessageBox.Show(result + " row(s) updated.");
+
         }
 
         // for accessing the Cloudinary cloud account
-        private void CloudinaryStorage()
+        private string CloudinaryStorage()
         {
             // making account to look up against
             Account account = new Account(CLOUD_NAME, API_KEY, API_SECRET);
             // assigning the global scope cloudinary object
             cloudinary = new Cloudinary(account);
-            // uploading the image using the path
-            UploadImage(imagePath);
+            if (isChooseImageClicked)
+            {
+                // uploading the image using the path
+                UploadImage(imagePath);
+            }
+            else
+            {
+                imageSecureURL = "";
+            }
+            return imageSecureURL;
         }
 
         // for the actual uploading to Cloudinary
@@ -150,13 +162,13 @@ namespace Online_Music_Player_From_SQL_DB
         // backgroudworker sets up the connection with Cloudinary
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            CloudinaryStorage();
+            // CloudinaryStorage();
         }
 
         // show "Complete!" when task completed
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Complete!");
+            // MessageBox.Show("Complete!");
         }
 
     }

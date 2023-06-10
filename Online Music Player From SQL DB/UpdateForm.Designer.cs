@@ -67,7 +67,7 @@
             // image_choose_btn
             // 
             this.image_choose_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.image_choose_btn.Location = new System.Drawing.Point(426, 367);
+            this.image_choose_btn.Location = new System.Drawing.Point(537, 365);
             this.image_choose_btn.Name = "image_choose_btn";
             this.image_choose_btn.Size = new System.Drawing.Size(130, 39);
             this.image_choose_btn.TabIndex = 37;
@@ -78,7 +78,7 @@
             // update_btn
             // 
             this.update_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.update_btn.Location = new System.Drawing.Point(118, 370);
+            this.update_btn.Location = new System.Drawing.Point(118, 366);
             this.update_btn.Name = "update_btn";
             this.update_btn.Size = new System.Drawing.Size(100, 36);
             this.update_btn.TabIndex = 36;
