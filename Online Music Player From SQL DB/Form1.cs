@@ -105,18 +105,25 @@ namespace Online_Music_Player_From_SQL_DB
             // getting the tracks for each respective album
             tracksBindingSource.DataSource = albums[rowClicked].Tracks;
             dataGridView2.DataSource = tracksBindingSource;
-            
+
             // if column number is 0, delete
             if (cellColumnNumber == 0)
             {
-                MessageBox.Show($"Are you sure you want to delete the following:" +
-                    $"\nAlbumName : {dataGridView.Rows[rowClicked].Cells[3].Value}" +
-                    $"\nArtistName : {dataGridView.Rows[rowClicked].Cells[4].Value}");
+                //MessageBox.Show($"Are you sure you want to delete the following:" +
+                //    $"\nAlbumName : {dataGridView.Rows[rowClicked].Cells[3].Value}" +
+                //    $"\nArtistName : {dataGridView.Rows[rowClicked].Cells[4].Value}");
+                // instantiating the delete form
+                DeleteForm deleteForm = new DeleteForm();
+                deleteForm.Text = "Deleting An Album";
+                // passing the album which was clicked
+                ExportAlbum.exportAlbum = albums[rowClicked];
+                // showing the form
+                deleteForm.ShowDialog();
             }
             // if column number is 1, update
             else if (cellColumnNumber == 1)
             {
-                // making the form
+                // making the update form
                 UpdateForm updateForm = new UpdateForm();
                 updateForm.Text = "Updating An Album";
                 // passing the album which was clicked

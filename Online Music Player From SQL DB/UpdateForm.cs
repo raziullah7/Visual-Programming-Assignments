@@ -79,7 +79,7 @@ namespace Online_Music_Player_From_SQL_DB
         // update btn
         private void update_btn_Click(object sender, EventArgs e)
         {
-            string url = CloudinaryStorage();
+            CloudinaryStorage();
 
             // getting passed album
             Album passedAlbum = ExportAlbum.exportAlbum;
@@ -87,10 +87,11 @@ namespace Online_Music_Player_From_SQL_DB
             // getting any changes from the textboxes 
             Album album = new Album
             {
+                ID = passedAlbum.ID,
                 AlbumName = txt_albumName.Text,
                 ArtistName = txt_artistName.Text,
                 Year = Int32.Parse(txt_year.Text),
-                ImageURL = imageSecureURL == string.Empty? passedAlbum.ImageURL: imageSecureURL,
+                ImageURL = (imageSecureURL == string.Empty)? passedAlbum.ImageURL: imageSecureURL,
                 Description = txt_description.Text
             };
 
@@ -105,27 +106,23 @@ namespace Online_Music_Player_From_SQL_DB
             //    Description = txt_description.Text == string.Empty ? passedAlbum.Description : txt_description.Text
             //};
 
-            //try
-            //{
-            //    // creating album data access object
-            //    AlbumsDAO albumsDAO = new AlbumsDAO();
-            //    // update the album
-            //    int result = albumsDAO.updateOneAlbum(album);
-            //    // print the number of updated rows
-            //    MessageBox.Show(result + " row(s) updated.");
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("An internal error occured.\nPlease try again after a few minutes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            try
+            {
+                // creating album data access object
+                AlbumsDAO albumsDAO = new AlbumsDAO();
 
-            // creating album data access object
-            AlbumsDAO albumsDAO = new AlbumsDAO();
+                // update the album
+                int result = albumsDAO.updateOneAlbum(album);
 
-            // update the album
-            int result = albumsDAO.updateOneAlbum(album);
-            // print the number of updated rows
-            MessageBox.Show(result + " row(s) updated.");
+                // print the number of updated rows
+                MessageBox.Show(result + " row(s) updated.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An internal error occured.\nPlease try again after a few minutes.\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            
 
         }
 

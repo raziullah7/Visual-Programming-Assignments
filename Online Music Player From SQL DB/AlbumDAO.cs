@@ -148,8 +148,6 @@ namespace Online_Music_Player_From_SQL_DB
             // writing the query (original albums table)
             // string query = "UPDATE `albums` SET `ALBUM_NAME` = @albumName, `ARTIST` = @artistName, `YEAR` = @year, `IMAGE_NAME` = @imageURL, `DESCRIPTION` = @description";
             string query = "UPDATE `fake_albums` SET `ALBUM_NAME`=@albumName, `ARTIST`=@artistName,`YEAR`=@year,`IMAGE_NAME`=@imageURL,`DESCRIPTION`=@description WHERE `ALBUM_ID`=@albumId";
-            // using a copy of albums table for testing
-            // string query = "UPDATE `fake_albums` SET `ALBUM_NAME` = @albumName, `ARTIST` = @artistName, `YEAR` = @year, `IMAGE_NAME` = @imageURL, `DESCRIPTION` = @description";
 
             // creating sql command
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -170,6 +168,34 @@ namespace Online_Music_Player_From_SQL_DB
 
             // returning the result
             return updatedRows;
+        }
+
+        public int deleteOneAlbum(Album album)
+        {
+            // creating sql connection
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            // opening connection
+            connection.Open();
+
+            // writing the query (original albums table)
+            // string query = "DELETE FROM `albums` WHERE `ALBUM_ID`=@albumId";
+            
+            string query = "DELETE FROM `fake_albums` WHERE `ALBUM_ID`=@albumId";
+
+            // creating sql command
+            MySqlCommand command = new MySqlCommand(query, connection);
+
+            // adjusting parameters AddWithValue("arbitraryName", realValue)
+            command.Parameters.AddWithValue("@albumId", album.ID);
+
+            // executing the command
+            int deletedRows = command.ExecuteNonQuery();
+
+            // closing connection
+            connection.Close();
+
+            // returning the result
+            return deletedRows;
         }
 
         public List<Track> getTracksForAlbum(int albumID)
