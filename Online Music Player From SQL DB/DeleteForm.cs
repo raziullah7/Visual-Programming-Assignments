@@ -45,6 +45,27 @@ namespace Online_Music_Player_From_SQL_DB
             }
         }
 
-        private void DeleteForm_Load(object sender, EventArgs e) { }
+        private void DeleteForm_Load(object sender, EventArgs e) {
+            // getting the passed album
+            Album passedAlbum = ExportAlbum.exportAlbum;
+
+            Label albumNameLabel = new Label
+            {
+                Text = $"Album Name : {passedAlbum.AlbumName}",
+                Location = new Point(12, 90),
+                MaximumSize = new Size(200, 20),
+                Font = new Font("Arial", 14)
+            };
+            Controls.Add(albumNameLabel);
+
+            Label artistLabel = new Label
+            {
+                Text = $"Artist Name : {passedAlbum.ArtistName}",
+                Location = new Point(12, 150),
+                MaximumSize = new Size(200, 20),
+                Font = new Font("Arial", 14)
+            };
+            Controls.Add((albumNameLabel));
+        }
     }
 }

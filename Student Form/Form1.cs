@@ -28,7 +28,7 @@ namespace Student_Form
         // bottons
         private void button1_Click(object sender, EventArgs e)
         {
-            this.dataGridView1.Rows.Add(name, rollNo, email);
+            dataGridView1.Rows.Add(name, rollNo, email);
         }
         private void button2_Click(object sender, EventArgs e)
         {

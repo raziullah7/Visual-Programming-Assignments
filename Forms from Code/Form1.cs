@@ -57,7 +57,7 @@ namespace Forms_from_Code
 
                 // implementing events
         // this implementation throws an exception for
-        // reasons only Allah knows of
+        // reasons only Allah knows about
         //private void The_DoubleClick(object? sender, EventArgs e)
         //{
         //    this.BackColor = Color.FromName(this.Text);

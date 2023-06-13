@@ -37,16 +37,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 35);
+            this.label1.Location = new System.Drawing.Point(12, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(452, 24);
+            this.label1.Size = new System.Drawing.Size(395, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Are you sure you want to delete the selected Album?";
+            this.label1.Text = "Are you sure you want to delete the following?";
             // 
             // yes_btn
             // 
             this.yes_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yes_btn.Location = new System.Drawing.Point(122, 101);
+            this.yes_btn.Location = new System.Drawing.Point(207, 222);
             this.yes_btn.Name = "yes_btn";
             this.yes_btn.Size = new System.Drawing.Size(90, 33);
             this.yes_btn.TabIndex = 1;
@@ -57,7 +57,7 @@
             // no_btn
             // 
             this.no_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.no_btn.Location = new System.Drawing.Point(259, 101);
+            this.no_btn.Location = new System.Drawing.Point(316, 222);
             this.no_btn.Name = "no_btn";
             this.no_btn.Size = new System.Drawing.Size(90, 33);
             this.no_btn.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 185);
+            this.ClientSize = new System.Drawing.Size(418, 279);
             this.Controls.Add(this.no_btn);
             this.Controls.Add(this.yes_btn);
             this.Controls.Add(this.label1);

@@ -28,13 +28,13 @@ class Program
     {
         // the thread is in unstarted state
         // thread is associated with Program.TempA
-        Thread thread = new Thread(Program.TempA);
+        Thread thread = new Thread(TempA);
         // starting the thread
         thread.Start();
 
         // the thread is in unstarted state
         // thread is associated with Program.TempB
-        Thread thread2 = new Thread(Program.TempB);
+        Thread thread2 = new Thread(TempB);
         // starting the thread2
         thread2.Start();
 

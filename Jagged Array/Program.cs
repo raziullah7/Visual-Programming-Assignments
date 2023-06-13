@@ -44,7 +44,7 @@ for (int i = 0; i < arr.GetLength(0); i++)
     {
         for (int k = 0; k < arr[i].GetLength(1); k++)
         {
-            Console.Write($"Enter Value at arr[{i}][{j}][{k}] : ");
+            Console.Write($"Enter Value at arr[{i}][{j}, {k}] : ");
             arr[i][j, k] = Convert.ToInt32(Console.ReadLine());
         }
     }

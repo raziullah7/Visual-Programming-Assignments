@@ -12,7 +12,7 @@ namespace Number_Range__Graded_Assignment_14Feb_
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            num = (textBox1.Text);
+            num = textBox1.Text;
         }
 
         private void button1_Click(object sender, EventArgs e)

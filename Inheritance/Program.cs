@@ -3,7 +3,7 @@
     class Program
     {
         class A { 
-            public static int YourLieInApril(int x, int y)
+            public static int YourLieInApril()
             {
                 return 619;
             }
@@ -45,11 +45,8 @@
             private int grade;
             private int attendence;
             // constructor
-            public VP(string name, int rollNo, int grade, int attendence)
+            public VP(string name, int rollNo, int grade, int attendence) : base(name, rollNo)
             {
-                // base(name, rollNo);
-                this.Name = name;
-                this.RollNo = rollNo;
                 this.grade = grade;
                 this.attendence = attendence;
             }
@@ -59,14 +56,14 @@
 
         public static void Main(string[] args)
         {
-            //A a = new A();
-            //B b = new B();
+            A a = new A();
+            B b = new B();
 
-            //Console.WriteLine(a.Calculate(10, 10));
+            Console.WriteLine(a.Calculate(10, 10));
 
-            //Console.WriteLine(b.Calculate(10, 10));
+            Console.WriteLine(b.Calculate(10, 10));
 
-            //Console.WriteLine(A.YourLieInApril(10, 10));
+            Console.WriteLine(A.YourLieInApril());
         }
     }
 }

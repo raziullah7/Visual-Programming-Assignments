@@ -2,20 +2,14 @@ namespace Grid_To_Array_Storage
 {
     public partial class Form1 : Form
     {
-        public List<Student> students;
+        // public List<Student> students;
         public Form1()
         {
             InitializeComponent();
         }
-        private void label4_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void label4_Click(object sender, EventArgs e) { }
+        private void button1_Click(object sender, EventArgs e) { }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -37,9 +31,11 @@ namespace Grid_To_Array_Storage
             //    dataGridView1.Rows.Add(row);
             //}
 
-            //foreach (string item in record) {
+            //foreach (string item in record)
+            //{
             //    dataGridView1.Rows.Add(item.., item.., item..);
             //}
+
             dataGridView1.DataSource = record;
 
 
