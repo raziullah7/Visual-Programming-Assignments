@@ -23,7 +23,11 @@ namespace Online_Music_Player_From_SQL_DB
             // opening connection to SQL server
 
             // writing sql query  
-            SqlCommand cmd = new SqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, [DESCRIPTION] FROM FAKE_ALBUMS", connection);
+            SqlCommand cmd = new SqlCommand {
+                CommandText = "SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM FAKE_ALBUMS",
+                Connection = connection
+            };
+
             // Opening Connection  
             connection.Open();
 
@@ -66,14 +70,18 @@ namespace Online_Music_Player_From_SQL_DB
             SqlConnection connection = new SqlConnection(connectionString);
             // open sql connection
             connection.Open();
-            // make query object and query the database
-            SqlCommand command = new SqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS WHERE ALBUM_NAME like @searchTitle", connection);
 
-            // setting up query to protect from sql injections
-            // command.CommandText = "SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS WHERE ALBUM_NAME like @searchTitle";
+            // make query object and query the database
+            SqlCommand command = new SqlCommand
+            {
+                // getting connection
+                Connection = connection,
+                // setting up query to protect from sql injections
+                CommandText = "SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM FAKE_ALBUMS WHERE ALBUM_NAME like @searchTitle"
+            };
+
             // making a variable to store items to be searched
             string searchable = "%" + title + "%";
-
             // replacing @searchTitle with the passed title
             command.Parameters.AddWithValue("@searchTitle", searchable);
 
@@ -106,7 +114,7 @@ namespace Online_Music_Player_From_SQL_DB
         public int addOneAlbum(Album album)
         {
             // creating sql connection
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(connectionString);
             // opening connection
             connection.Open();
 
@@ -116,7 +124,7 @@ namespace Online_Music_Player_From_SQL_DB
             string query = "INSERT INTO `fake_albums` (`ALBUM_NAME`, `ARTIST`, `YEAR`, `IMAGE_NAME`, `DESCRIPTION`) VALUES (@albumName, @artistName, @year, @imageURL, @description)";
 
             // creating sql command
-            MySqlCommand command = new MySqlCommand(query, connection);
+            SqlCommand command = new SqlCommand(query, connection);
 
             // adjusting parameters AddWithValue("arbitraryName", realValue)
             command.Parameters.AddWithValue("@albumName", album.AlbumName);
@@ -139,7 +147,7 @@ namespace Online_Music_Player_From_SQL_DB
         public int updateOneAlbum(Album album)
         {
             // creating sql connection
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(connectionString);
             // opening connection
             connection.Open();
 
@@ -148,7 +156,7 @@ namespace Online_Music_Player_From_SQL_DB
             string query = "UPDATE `fake_albums` SET `ALBUM_NAME`=@albumName, `ARTIST`=@artistName,`YEAR`=@year,`IMAGE_NAME`=@imageURL,`DESCRIPTION`=@description WHERE `ALBUM_ID`=@albumId";
 
             // creating sql command
-            MySqlCommand command = new MySqlCommand(query, connection);
+            SqlCommand command = new SqlCommand(query, connection);
 
             // adjusting parameters AddWithValue("arbitraryName", realValue)
             command.Parameters.AddWithValue("@albumId", album.ID);
@@ -172,7 +180,7 @@ namespace Online_Music_Player_From_SQL_DB
         public int deleteOneAlbum(Album album)
         {
             // creating sql connection
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(connectionString);
             // opening connection
             connection.Open();
 
@@ -182,7 +190,7 @@ namespace Online_Music_Player_From_SQL_DB
             string query = "DELETE FROM `fake_albums` WHERE `ALBUM_ID`=@albumId";
 
             // creating sql command
-            MySqlCommand command = new MySqlCommand(query, connection);
+            SqlCommand command = new SqlCommand(query, connection);
 
             // adjusting parameters AddWithValue("arbitraryName", realValue)
             command.Parameters.AddWithValue("@albumId", album.ID);
@@ -249,12 +257,12 @@ namespace Online_Music_Player_From_SQL_DB
             // empty list of tracks
             List<JObject> returnThese = new List<JObject>();
             // creating connection with server
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(connectionString);
             // opening connection before making sqlCommand
             connection.Open();
 
             // making sqlCommand
-            MySqlCommand command = new MySqlCommand();
+            SqlCommand command = new SqlCommand();
             // adding query to sqlCommand
             command.CommandText = "SELECT TRACK_ID, albums.ALBUM_NAME as 'ALBUM_TITLE', `TRACK_TITLE`, `VIDEO_URL`, `TRACK_LYRICS` FROM `tracks` JOIN albums ON tracks.albums_ID = albums.ALBUM_ID WHERE ALBUM_ID = @albumid";
 
@@ -266,7 +274,7 @@ namespace Online_Music_Player_From_SQL_DB
             command.Connection = connection;
 
             // executing command and reading the result
-            using (MySqlDataReader reader = command.ExecuteReader())
+            using (SqlDataReader reader = command.ExecuteReader())
             {
 
                 while (reader.Read())

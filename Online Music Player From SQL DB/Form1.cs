@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CloudinaryDotNet.Actions;
 using CloudinaryDotNet;
+using System.Diagnostics;
 
 namespace Online_Music_Player_From_SQL_DB
 {
@@ -58,13 +59,19 @@ namespace Online_Music_Player_From_SQL_DB
             // changes the width of each column to fit the content
             // it gives the sewt width from SQL Server if it's an sql command
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            // dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // loading the tracks of the 
             dataGridView2.DataSource = albums[0].Tracks;
 
             // loading the image of the first album by default
             pictureBox1.Load(albums[0].ImageURL);
+
+            // setting up the album and track as the 1st album's 1st tracks
+            // if no cell is clicked for "Play Track" button
+            ExportAlbum.selectedAlbum = albums[0];
+            //ExportAlbum.selectedTrack = albums[0].Tracks[0];
+            ExportAlbum.selectedTrack = ExportAlbum.selectedAlbum.Tracks[0];
         }
 
         // "Search Album" button
@@ -93,7 +100,7 @@ namespace Online_Music_Player_From_SQL_DB
             // getting URL's of the respective rows
             string imageURL = dataGridView.Rows[rowClicked].Cells[6].Value.ToString();
             // MessageBox.Show(imageURL);
-
+            
             // loading the thumbnail pic of the clicked row
             try
             {
@@ -137,6 +144,9 @@ namespace Online_Music_Player_From_SQL_DB
                 // showing the form
                 updateForm.ShowDialog();
             }
+
+            // selecting the album for "Play Track" button
+            ExportAlbum.selectedAlbum = albums[rowClicked];
         }
 
         // "Add Album" button
@@ -150,8 +160,20 @@ namespace Online_Music_Player_From_SQL_DB
 
         // -------------------------------------------------------------------------- //
         private void textBox1_TextChanged(object sender, EventArgs e) { }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {}
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e) {}
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e) {
+            // storing the sender of the datagridview to get which
+            // specific row and cell gets clicked
+            DataGridView dataGridView = sender as DataGridView;
+            //DataGridView dataGridView = (DataGridView)sender;
+
+            // getting row number
+            int rowClicked = dataGridView.CurrentRow.Index;
+
+            // selecting the track for "Play Track" button
+            ExportAlbum.selectedTrack = ExportAlbum.selectedAlbum.Tracks[rowClicked];
+        }
 
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -162,6 +184,19 @@ namespace Online_Music_Player_From_SQL_DB
                 row = dataGridView1.Rows[i];
                 row.Cells[0].Style = new DataGridViewCellStyle { BackColor = Color.Red };
                 row.Cells[1].Style = new DataGridViewCellStyle { BackColor = Color.Green };
+            }
+        }
+
+        private void play_track_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // opening the url of the video in the browser to run online
+                Process.Start(ExportAlbum.selectedTrack.VideoURL);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"URL not available!\n{ ex.Message }", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
