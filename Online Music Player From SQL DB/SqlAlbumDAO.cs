@@ -63,37 +63,35 @@ namespace Online_Music_Player_From_SQL_DB
             List<Album> searchedAlbums = new List<Album>();
 
             // make sql connection object
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(connectionString);
             // open sql connection
             connection.Open();
             // make query object and query the database
-            MySqlCommand command = new MySqlCommand();
+            SqlCommand command = new SqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS WHERE ALBUM_NAME like @searchTitle", connection);
 
             // setting up query to protect from sql injections
-            command.CommandText = "SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS WHERE ALBUM_NAME like @searchTitle";
+            // command.CommandText = "SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS WHERE ALBUM_NAME like @searchTitle";
             // making a variable to store items to be searched
             string searchable = "%" + title + "%";
 
             // replacing @searchTitle with the passed title
             command.Parameters.AddWithValue("@searchTitle", searchable);
-            // making sql db connection with the sql command
-            command.Connection = connection;
 
             // we have run the sql query and recieved an object
             // reading data from the object using MySqlDataReader
-            using (MySqlDataReader reader = command.ExecuteReader())
+            using (SqlDataReader sqlDataReader = command.ExecuteReader())
             {
-                while (reader.Read())
+                while (sqlDataReader.Read())
                 {
                     // getting response album by album
                     Album album = new Album
                     {
-                        ID = reader.GetInt32(0),
-                        AlbumName = reader.GetString(1),
-                        ArtistName = reader.GetString(2),
-                        Year = reader.GetInt32(3),
-                        ImageURL = reader.GetString(4),
-                        Description = reader.GetString(5)
+                        ID = Convert.ToInt32(sqlDataReader["ALBUM_ID"]),
+                        AlbumName = Convert.ToString(sqlDataReader["ALBUM_NAME"]),
+                        ArtistName = Convert.ToString(sqlDataReader["ARTIST"]),
+                        Year = Convert.ToInt32(sqlDataReader["YEAR"]),
+                        ImageURL = Convert.ToString(sqlDataReader["IMAGE_NAME"]),
+                        Description = Convert.ToString(sqlDataReader["DESCRIPTION"])
                     };
                     searchedAlbums.Add(album);
                 }

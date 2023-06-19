@@ -49,7 +49,7 @@ namespace Online_Music_Player_From_SQL_DB
                 };  
 
                 SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
-                int result = albumsDAO.addOneAlbum(album);
+                int result = sqlAlbumsDAO.addOneAlbum(album);
                 MessageBox.Show(result + " new row(s) inserted");
             }
             catch (Exception ex)
@@ -84,18 +84,6 @@ namespace Online_Music_Player_From_SQL_DB
             imageSecureURL = uploadResult.SecureUrl.ToString();
         }
 
-        // backgroudworker sets up the connection with Cloudinary
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            // CloudinaryStorage();
-        }
-
-        // show "Complete!" when task completed
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            // MessageBox.Show("Complete!");
-        }
-
         // button used to select image from the Windows Explorer
         // "Choose Image" under the picture box
         private void image_choose_btn_Click(object sender, EventArgs e)
@@ -127,9 +115,11 @@ namespace Online_Music_Player_From_SQL_DB
             backgroundWorker1.RunWorkerAsync();
         }
 
-        private void txt_albumName_TextChanged(object sender, EventArgs e)
-        {
-
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
+            CloudinaryStorage();
         }
+
+        private void txt_albumName_TextChanged(object sender, EventArgs e) { }
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) { }
     }
 }

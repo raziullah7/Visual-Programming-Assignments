@@ -57,7 +57,7 @@ namespace Online_Music_Player_From_SQL_DB
 
             // changes the width of each column to fit the content
             // it gives the sewt width from SQL Server if it's an sql command
-            // dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             // dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // loading the tracks of the 
