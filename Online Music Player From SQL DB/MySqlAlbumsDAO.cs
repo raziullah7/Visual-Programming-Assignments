@@ -3,14 +3,15 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-// using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Online_Music_Player_From_SQL_DB
 {
-    // DAO stands for Data Access Object
-    internal class AlbumsDAO
+    internal class MySqlAlbumsDAO
     {
-        string connectionString = "data source=WARMACHINE\\SQLEXPRESS; database=MUSIC; integrated security=SSPI;";
+        string connectionString = "server=localhost; port=3306; username=root; password=root; database=music;";
 
         // making method to get all lists
         public List<Album> getAllAlbums()
@@ -18,36 +19,36 @@ namespace Online_Music_Player_From_SQL_DB
             // start with an empty list
             List<Album> returnThese = new List<Album>();
 
-            // connect to SQL database
-            SqlConnection connection = new SqlConnection(connectionString);
-            // opening connection to SQL server
-
-            // writing sql query  
-            SqlCommand cmd = new SqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, [DESCRIPTION] FROM FAKE_ALBUMS", connection);
-            // Opening Connection  
+            // connect to mySQL database
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            // opening connection to MYSQL server
             connection.Open();
 
-            // Executing the SQL query  
-            SqlDataReader sqlDataReader = cmd.ExecuteReader();
+            // writing query to be run
+            // MySqlCommand command = new MySqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM ALBUMS", connection); // original table
+            MySqlCommand command = new MySqlCommand("SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM FAKE_ALBUMS", connection); // test table
 
-            // Iterating Data  
-            while (sqlDataReader.Read())
+            
+            // getting the data using MySqlDataReader
+            using (MySqlDataReader reader = command.ExecuteReader())
             {
-                Album album = new Album
+                while (reader.Read())
                 {
-                    ID = Convert.ToInt32(sqlDataReader["ALBUM_ID"]),
-                    AlbumName = Convert.ToString(sqlDataReader["ALBUM_NAME"]),
-                    ArtistName = Convert.ToString(sqlDataReader["ARTIST"]),
-                    Year = Convert.ToInt32(sqlDataReader["YEAR"]),
-                    ImageURL = Convert.ToString(sqlDataReader["IMAGE_NAME"]),
-                    Description = Convert.ToString(sqlDataReader["DESCRIPTION"])
-                };
-                // adding all tracks to "list<track> Tracks"
-                album.Tracks = getTracksForAlbum(album.ID);
-                // adding tracks to temporary list
-                returnThese.Add(album);
+                    Album album = new Album
+                    {
+                        ID = reader.GetInt32(0),
+                        AlbumName = reader.GetString(1),
+                        ArtistName = reader.GetString(2),
+                        Year = reader.GetInt32(3),
+                        ImageURL = reader.GetString(4),
+                        Description = reader.GetString(5)
+                    };
+                    // adding all tracks to "list<track> Tracks"
+                    album.Tracks = getTracksForAlbum(album.ID);
+                    // adding tracks to temporary list
+                    returnThese.Add(album);
+                }
             }
-
             // closing connection to MYSQL server
             connection.Close();
 
@@ -136,6 +137,7 @@ namespace Online_Music_Player_From_SQL_DB
             return newRows;
         }
 
+
         public int updateOneAlbum(Album album)
         {
             // creating sql connection
@@ -168,6 +170,7 @@ namespace Online_Music_Player_From_SQL_DB
             return updatedRows;
         }
 
+
         public int deleteOneAlbum(Album album)
         {
             // creating sql connection
@@ -195,6 +198,7 @@ namespace Online_Music_Player_From_SQL_DB
             // returning the result
             return deletedRows;
         }
+
 
         public List<Track> getTracksForAlbum(int albumID)
         {

@@ -155,18 +155,5 @@ namespace Online_Music_Player_From_SQL_DB
             var uploadResult = cloudinary.Upload(uploadParams);
             imageSecureURL = uploadResult.SecureUrl.ToString();
         }
-
-        // backgroudworker sets up the connection with Cloudinary
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            // CloudinaryStorage();
-        }
-
-        // show "Complete!" when task completed
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            // MessageBox.Show("Complete!");
-        }
-
     }
 }
