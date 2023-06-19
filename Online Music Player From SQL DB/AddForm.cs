@@ -48,7 +48,7 @@ namespace Online_Music_Player_From_SQL_DB
                     Description = txt_description.Text
                 };  
 
-                AlbumsDAO albumsDAO = new AlbumsDAO();
+                SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
                 int result = albumsDAO.addOneAlbum(album);
                 MessageBox.Show(result + " new row(s) inserted");
             }
@@ -125,6 +125,11 @@ namespace Online_Music_Player_From_SQL_DB
         private void image_upload_btn_Click(object sender, EventArgs e)
         {
             backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void txt_albumName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

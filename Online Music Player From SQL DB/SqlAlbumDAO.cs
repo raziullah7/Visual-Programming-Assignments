@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 namespace Online_Music_Player_From_SQL_DB
 {
     // DAO stands for Data Access Object
-    internal class AlbumsDAO
+    internal class SqlAlbumsDAO
     {
         string connectionString = "data source=WARMACHINE\\SQLEXPRESS; database=MUSIC; integrated security=SSPI;";
 
@@ -28,24 +28,25 @@ namespace Online_Music_Player_From_SQL_DB
             connection.Open();
 
             // Executing the SQL query  
-            SqlDataReader sqlDataReader = cmd.ExecuteReader();
-
-            // Iterating Data  
-            while (sqlDataReader.Read())
+            using (SqlDataReader sqlDataReader = cmd.ExecuteReader())
             {
-                Album album = new Album
+                // Iterating Data  
+                while (sqlDataReader.Read())
                 {
-                    ID = Convert.ToInt32(sqlDataReader["ALBUM_ID"]),
-                    AlbumName = Convert.ToString(sqlDataReader["ALBUM_NAME"]),
-                    ArtistName = Convert.ToString(sqlDataReader["ARTIST"]),
-                    Year = Convert.ToInt32(sqlDataReader["YEAR"]),
-                    ImageURL = Convert.ToString(sqlDataReader["IMAGE_NAME"]),
-                    Description = Convert.ToString(sqlDataReader["DESCRIPTION"])
-                };
-                // adding all tracks to "list<track> Tracks"
-                album.Tracks = getTracksForAlbum(album.ID);
-                // adding tracks to temporary list
-                returnThese.Add(album);
+                    Album album = new Album
+                    {
+                        ID = Convert.ToInt32(sqlDataReader["ALBUM_ID"]),
+                        AlbumName = Convert.ToString(sqlDataReader["ALBUM_NAME"]),
+                        ArtistName = Convert.ToString(sqlDataReader["ARTIST"]),
+                        Year = Convert.ToInt32(sqlDataReader["YEAR"]),
+                        ImageURL = Convert.ToString(sqlDataReader["IMAGE_NAME"]),
+                        Description = Convert.ToString(sqlDataReader["DESCRIPTION"])
+                    };
+                    // adding all tracks to "list<track> Tracks"
+                    album.Tracks = getTracksForAlbum(album.ID);
+                    // adding tracks to temporary list
+                    returnThese.Add(album);
+                }
             }
 
             // closing connection to MYSQL server
@@ -136,6 +137,7 @@ namespace Online_Music_Player_From_SQL_DB
             return newRows;
         }
 
+
         public int updateOneAlbum(Album album)
         {
             // creating sql connection
@@ -168,6 +170,7 @@ namespace Online_Music_Player_From_SQL_DB
             return updatedRows;
         }
 
+
         public int deleteOneAlbum(Album album)
         {
             // creating sql connection
@@ -196,40 +199,41 @@ namespace Online_Music_Player_From_SQL_DB
             return deletedRows;
         }
 
+
         public List<Track> getTracksForAlbum(int albumID)
         {
             // empty list of tracks
             List<Track> returnThese = new List<Track>();
             // creating connection with server
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(connectionString);
             // opening connection before making sqlCommand
             connection.Open();
 
             // making sqlCommand
-            MySqlCommand command = new MySqlCommand();
+            SqlCommand command = new SqlCommand("SELECT * FROM TRACKS WHERE album_ID = @albumid", connection);
             // adding query to sqlCommand
-            command.CommandText = "SELECT * FROM TRACKS WHERE albums_ID = @albumid";
+            // command.CommandText = "SELECT * FROM TRACKS WHERE albums_ID = @albumid";
 
             // @albumid is the parameter mentioned in the query
             // we have to define that parameter, which we get from
             // the parameter passed into the method
             command.Parameters.AddWithValue("@albumid", albumID);
             // giving the address of the mysqlconnection to mysqlcommand
-            command.Connection = connection;
+            // command.Connection = connection;
 
             // executing command and reading the result
-            using (MySqlDataReader reader = command.ExecuteReader())
+            using (SqlDataReader sqlDataReader = command.ExecuteReader())
             {
-                while (reader.Read())
+                while (sqlDataReader.Read())
                 {
                     // getting data track by track
                     Track track = new Track
                     {
-                        ID = reader.GetInt32(0),
-                        Name = reader.GetString(1),
-                        Number = reader.GetInt32(2),
-                        VideoURL = reader.GetString(3),
-                        Lyrics = reader.GetString(4)
+                        ID = Convert.ToInt32(sqlDataReader["TRACK_ID"]),
+                        Name = Convert.ToString(sqlDataReader["TRACK_TITLE"]),
+                        Number = Convert.ToInt32(sqlDataReader["TRACK_NUMBER"]),
+                        VideoURL = Convert.ToString(sqlDataReader["VIDEO_URL"]),
+                        Lyrics = Convert.ToString(sqlDataReader["TRACK_LYRICS"])
                     };
                     returnThese.Add(track);
                 }

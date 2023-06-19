@@ -31,10 +31,10 @@ namespace Online_Music_Player_From_SQL_DB
                 Album passedAlbum = ExportAlbum.exportAlbum;
 
                 // making the Data Access Object
-                AlbumsDAO albumsDAO = new AlbumsDAO();
+                SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
 
                 // deleting the clicked album
-                int result = albumsDAO.deleteOneAlbum(passedAlbum);
+                int result = sqlAlbumsDAO.deleteOneAlbum(passedAlbum);
 
                 // print the number of deleted rows
                 MessageBox.Show(result + " row(s) deleted.");

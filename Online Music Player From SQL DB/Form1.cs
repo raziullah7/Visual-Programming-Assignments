@@ -47,17 +47,18 @@ namespace Online_Music_Player_From_SQL_DB
             }
 
             // creating album data access object
-            AlbumsDAO albumsDAO = new AlbumsDAO();
+            SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
 
             // creating connection to the albums grid
-            albums = albumsDAO.getAllAlbums();
+            albums = sqlAlbumsDAO.getAllAlbums();
             // adding objects to DAO
             albumBindingSource.DataSource = albums;
             dataGridView1.DataSource = albumBindingSource;
 
             // changes the width of each column to fit the content
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            // it gives the sewt width from SQL Server if it's an sql command
+            // dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            // dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             // loading the tracks of the 
             dataGridView2.DataSource = albums[0].Tracks;
@@ -70,11 +71,11 @@ namespace Online_Music_Player_From_SQL_DB
         private void button2_Click_1(object sender, EventArgs e)
         {
             // creating album data access object
-            AlbumsDAO albumsDAO = new AlbumsDAO();
+            SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
 
             // creating connection to the grid
             // filtering and adding objects to DAO
-            albumBindingSource.DataSource = albumsDAO.searchTitles(textBox1.Text);
+            albumBindingSource.DataSource = sqlAlbumsDAO.searchTitles(textBox1.Text);
             dataGridView1.DataSource = albumBindingSource;
         }
 
@@ -94,13 +95,18 @@ namespace Online_Music_Player_From_SQL_DB
             // MessageBox.Show(imageURL);
 
             // loading the thumbnail pic of the clicked row
-            pictureBox1.Load(imageURL);
+            try
+            {
+                pictureBox1.Load(imageURL);
+            }
+            catch { }
+
 
             // creating connection to the tracks grid
             // creating and adding objects to DAO
             // uses ID of Album and also makes a run to the DB
-            // AlbumsDAO albumsDAO = new AlbumsDAO();
-            // tracksBindingSource.DataSource = albumsDAO.getTracksUsingJoins((int)dataGridView.Rows[rowClicked].Cells[0].Value);
+            // SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
+            // tracksBindingSource.DataSource = sqlAlbumsDAO.getTracksUsingJoins((int)dataGridView.Rows[rowClicked].Cells[0].Value);
 
             // getting the tracks for each respective album
             tracksBindingSource.DataSource = albums[rowClicked].Tracks;

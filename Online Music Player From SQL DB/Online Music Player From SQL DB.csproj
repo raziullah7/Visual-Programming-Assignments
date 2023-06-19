@@ -107,7 +107,7 @@
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Album.cs" />
-    <Compile Include="AlbumDAO.cs" />
+    <Compile Include="SqlAlbumDAO.cs" />
     <Compile Include="DeleteForm.cs">
       <SubType>Form</SubType>
     </Compile>

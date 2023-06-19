@@ -110,6 +110,7 @@
             this.txt_albumName.Name = "txt_albumName";
             this.txt_albumName.Size = new System.Drawing.Size(288, 26);
             this.txt_albumName.TabIndex = 18;
+            this.txt_albumName.TextChanged += new System.EventHandler(this.txt_albumName_TextChanged);
             // 
             // label5
             // 

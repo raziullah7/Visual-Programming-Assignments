@@ -109,10 +109,10 @@ namespace Online_Music_Player_From_SQL_DB
             try
             {
                 // creating album data access object
-                AlbumsDAO albumsDAO = new AlbumsDAO();
+                SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
 
                 // update the album
-                int result = albumsDAO.updateOneAlbum(album);
+                int result = sqlAlbumsDAO.updateOneAlbum(album);
 
                 // print the number of updated rows
                 MessageBox.Show(result + " row(s) updated.");
