@@ -13,5 +13,6 @@ namespace Online_Music_Player_From_SQL_DB
         public int Number { get; set; }
         public string VideoURL { get; set; }
         public string Lyrics { get; set; }
+        public int AlbumID { get; set; }
     }
 }

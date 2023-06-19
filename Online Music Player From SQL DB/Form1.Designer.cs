@@ -40,6 +40,7 @@
             this.add_btn = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.play_track_btn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -138,20 +139,21 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.add_btn);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(928, 549);
+            this.tabPage2.Size = new System.Drawing.Size(923, 547);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Operations";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // add_btn
             // 
-            this.add_btn.Location = new System.Drawing.Point(123, 68);
+            this.add_btn.Location = new System.Drawing.Point(123, 115);
             this.add_btn.Name = "add_btn";
-            this.add_btn.Size = new System.Drawing.Size(117, 58);
+            this.add_btn.Size = new System.Drawing.Size(120, 55);
             this.add_btn.TabIndex = 10;
             this.add_btn.Text = "Add Album";
             this.add_btn.UseVisualStyleBackColor = true;
@@ -169,6 +171,15 @@
             this.play_track_btn.Text = "▶   Play Track";
             this.play_track_btn.UseVisualStyleBackColor = false;
             this.play_track_btn.Click += new System.EventHandler(this.play_track_btn_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(285, 115);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 55);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Add Track";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -204,6 +215,7 @@
         private System.Windows.Forms.Label label6;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button play_track_btn;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -106,6 +106,12 @@
     <Compile Include="AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddTrack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddTrack.Designer.cs">
+      <DependentUpon>AddTrack.cs</DependentUpon>
+    </Compile>
     <Compile Include="Album.cs" />
     <Compile Include="SqlAlbumDAO.cs" />
     <Compile Include="DeleteForm.cs">
@@ -133,6 +139,9 @@
     </Compile>
     <EmbeddedResource Include="AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddTrack.resx">
+      <DependentUpon>AddTrack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteForm.resx">
       <DependentUpon>DeleteForm.cs</DependentUpon>
