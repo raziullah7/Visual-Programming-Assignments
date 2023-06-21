@@ -121,17 +121,52 @@ namespace Online_Music_Player_From_SQL_DB
             // writing the query (original albums table)
             //string query = "INSERT INTO `albums` (`ALBUM_NAME`, `ARTIST`, `YEAR`, `IMAGE_NAME`, `DESCRIPTION`) VALUES (@albumName, @artistName, @year, @imageURL, @description)";
             // using a copy of albums table for testing
-            string query = "INSERT INTO `fake_albums` (`ALBUM_NAME`, `ARTIST`, `YEAR`, `IMAGE_NAME`, `DESCRIPTION`) VALUES (@albumName, @artistName, @year, @imageURL, @description)";
+            string query = "INSERT INTO fake_albums (ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION) VALUES (@albumID, @albumName, @artistName, @year, @imageURL, @description)";
 
             // creating sql command
             SqlCommand command = new SqlCommand(query, connection);
 
             // adjusting parameters AddWithValue("arbitraryName", realValue)
+            command.Parameters.AddWithValue("@albumID", getNextAlbumID());
             command.Parameters.AddWithValue("@albumName", album.AlbumName);
             command.Parameters.AddWithValue("@artistName", album.ArtistName);
             command.Parameters.AddWithValue("@year", album.Year);
             command.Parameters.AddWithValue("@imageURL", album.ImageURL);
             command.Parameters.AddWithValue("@description", album.Description);
+
+            // executing the command
+            int newRows = command.ExecuteNonQuery();
+
+            // closing connection
+            connection.Close();
+
+            // returning the result
+            return newRows;
+        }
+
+
+        public int addOneTrack(Track track)
+        {
+            // creating sql connection
+            SqlConnection connection = new SqlConnection(connectionString);
+            // opening connection
+            connection.Open();
+
+            // writing the query (original albums table)
+            //string query = "INSERT INTO `albums` (`ALBUM_NAME`, `ARTIST`, `YEAR`, `IMAGE_NAME`, `DESCRIPTION`) VALUES (@albumName, @artistName, @year, @imageURL, @description)";
+            // using a copy of albums table for testing
+            string query = "INSERT INTO fake_tracks (TRACK_ID, TRACK_TITLE, TRACK_NUMBER, VIDEO_URL, TRACK_LYRICS, ALBUM_ID) VALUES (@trackID, @trackName, @trackNumber, @videoUrl, @trackLyrics, @albumId)";
+
+            // creating sql command
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // adjusting parameters AddWithValue("arbitraryName", realValue)
+            command.Parameters.AddWithValue("@trackID", getNextTrackID());
+            command.Parameters.AddWithValue("@trackName", track.TrackName);
+            command.Parameters.AddWithValue("@trackNumber", track.TrackNumber);
+            command.Parameters.AddWithValue("@videoUrl", track.VideoURL);
+            command.Parameters.AddWithValue("@trackLyrics", track.TrackLyrics);
+            command.Parameters.AddWithValue("@albumId", track.AlbumID);
 
             // executing the command
             int newRows = command.ExecuteNonQuery();
@@ -153,7 +188,7 @@ namespace Online_Music_Player_From_SQL_DB
 
             // writing the query (original albums table)
             // string query = "UPDATE `albums` SET `ALBUM_NAME` = @albumName, `ARTIST` = @artistName, `YEAR` = @year, `IMAGE_NAME` = @imageURL, `DESCRIPTION` = @description";
-            string query = "UPDATE `fake_albums` SET `ALBUM_NAME`=@albumName, `ARTIST`=@artistName,`YEAR`=@year,`IMAGE_NAME`=@imageURL,`DESCRIPTION`=@description WHERE `ALBUM_ID`=@albumId";
+            string query = "UPDATE fake_albums SET ALBUM_NAME = @albumName, ARTIST = @artistName, YEAR = @year, IMAGE_NAME = @imageURL, DESCRIPTION = @description WHERE ALBUM_ID = @albumId";
 
             // creating sql command
             SqlCommand command = new SqlCommand(query, connection);
@@ -187,7 +222,7 @@ namespace Online_Music_Player_From_SQL_DB
             // writing the query (original albums table)
             // string query = "DELETE FROM `albums` WHERE `ALBUM_ID`=@albumId";
 
-            string query = "DELETE FROM `fake_albums` WHERE `ALBUM_ID`=@albumId";
+            string query = "DELETE FROM fake_albums WHERE ALBUM_ID = @albumId";
 
             // creating sql command
             SqlCommand command = new SqlCommand(query, connection);
@@ -235,11 +270,11 @@ namespace Online_Music_Player_From_SQL_DB
                     // getting data track by track
                     Track track = new Track
                     {
-                        ID = Convert.ToInt32(sqlDataReader["TRACK_ID"]),
-                        Name = Convert.ToString(sqlDataReader["TRACK_TITLE"]),
-                        Number = Convert.ToInt32(sqlDataReader["TRACK_NUMBER"]),
+                        TrackID = Convert.ToInt32(sqlDataReader["TRACK_ID"]),
+                        TrackName = Convert.ToString(sqlDataReader["TRACK_TITLE"]),
+                        TrackNumber = Convert.ToInt32(sqlDataReader["TRACK_NUMBER"]),
                         VideoURL = Convert.ToString(sqlDataReader["VIDEO_URL"]),
-                        Lyrics = Convert.ToString(sqlDataReader["TRACK_LYRICS"])
+                        TrackLyrics = Convert.ToString(sqlDataReader["TRACK_LYRICS"])
                     };
                     returnThese.Add(track);
                 }
@@ -264,7 +299,7 @@ namespace Online_Music_Player_From_SQL_DB
             // making sqlCommand
             SqlCommand command = new SqlCommand();
             // adding query to sqlCommand
-            command.CommandText = "SELECT TRACK_ID, albums.ALBUM_NAME as 'ALBUM_TITLE', `TRACK_TITLE`, `VIDEO_URL`, `TRACK_LYRICS` FROM `tracks` JOIN albums ON tracks.albums_ID = albums.ALBUM_ID WHERE ALBUM_ID = @albumid";
+            command.CommandText = "SELECT TRACK_ID, albums.ALBUM_NAME as ALBUM_TITLE, TRACK_TITLE, VIDEO_URL, TRACK_LYRICS FROM tracks JOIN albums ON tracks.albums_ID = albums.ALBUM_ID WHERE ALBUM_ID = @albumid";
 
             // @albumid is the parameter mentioned in the query
             // we have to define that parameter, which we get from
@@ -294,6 +329,46 @@ namespace Online_Music_Player_From_SQL_DB
 
             // returning list of tracks
             return returnThese;
+        }
+
+        
+        private int getNextAlbumID()
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();
+            SqlCommand command = new SqlCommand
+            {
+                CommandText = "select MAX(album_id) + 1 AS new_id from fake_albums;",
+                Connection = sqlConnection
+            };
+
+            int ID = 0;
+            SqlDataReader reader = command.ExecuteReader();
+            while(reader.Read())
+            {
+                ID = Convert.ToInt32(reader["new_id"]);
+            }
+            return ID;
+        }
+
+
+        private int getNextTrackID()
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();
+            SqlCommand command = new SqlCommand
+            {
+                CommandText = "SELECT MAX(TRACK_ID) + 1 AS new_id FROM fake_tracks;",
+                Connection = sqlConnection
+            };
+
+            int ID = 0;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                ID = Convert.ToInt32(reader["new_id"]);
+            }
+            return ID;
         }
     }
 }

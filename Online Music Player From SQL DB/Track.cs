@@ -8,11 +8,11 @@ namespace Online_Music_Player_From_SQL_DB
 {
     internal class Track
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public int Number { get; set; }
+        public int TrackID { get; set; }
+        public string TrackName { get; set; }
+        public int TrackNumber { get; set; }
         public string VideoURL { get; set; }
-        public string Lyrics { get; set; }
+        public string TrackLyrics { get; set; }
         public int AlbumID { get; set; }
     }
 }

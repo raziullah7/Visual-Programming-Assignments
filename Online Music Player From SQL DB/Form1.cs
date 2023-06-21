@@ -199,5 +199,13 @@ namespace Online_Music_Player_From_SQL_DB
                 MessageBox.Show($"URL not available!\n{ ex.Message }", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // "Add Track" button in Operations tab
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddTrack addTrack = new AddTrack();
+            addTrack.Text = "Add A Track";
+            addTrack.Show();
+        }
     }
 }

@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.play_track_btn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -37,10 +38,9 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.add_btn = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.play_track_btn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,6 +76,19 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "View Albums";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // play_track_btn
+            // 
+            this.play_track_btn.BackColor = System.Drawing.Color.LimeGreen;
+            this.play_track_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.play_track_btn.ForeColor = System.Drawing.SystemColors.Info;
+            this.play_track_btn.Location = new System.Drawing.Point(26, 502);
+            this.play_track_btn.Name = "play_track_btn";
+            this.play_track_btn.Size = new System.Drawing.Size(149, 39);
+            this.play_track_btn.TabIndex = 13;
+            this.play_track_btn.Text = "▶   Play Track";
+            this.play_track_btn.UseVisualStyleBackColor = false;
+            this.play_track_btn.Click += new System.EventHandler(this.play_track_btn_Click);
             // 
             // label6
             // 
@@ -149,6 +162,16 @@
             this.tabPage2.Text = "Operations";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(285, 115);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 55);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Add Track";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // add_btn
             // 
             this.add_btn.Location = new System.Drawing.Point(123, 115);
@@ -158,28 +181,6 @@
             this.add_btn.Text = "Add Album";
             this.add_btn.UseVisualStyleBackColor = true;
             this.add_btn.Click += new System.EventHandler(this.add_btn_Click_1);
-            // 
-            // play_track_btn
-            // 
-            this.play_track_btn.BackColor = System.Drawing.Color.LimeGreen;
-            this.play_track_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.play_track_btn.ForeColor = System.Drawing.SystemColors.Info;
-            this.play_track_btn.Location = new System.Drawing.Point(26, 502);
-            this.play_track_btn.Name = "play_track_btn";
-            this.play_track_btn.Size = new System.Drawing.Size(149, 39);
-            this.play_track_btn.TabIndex = 13;
-            this.play_track_btn.Text = "▶   Play Track";
-            this.play_track_btn.UseVisualStyleBackColor = false;
-            this.play_track_btn.Click += new System.EventHandler(this.play_track_btn_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(285, 115);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 55);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Add Track";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

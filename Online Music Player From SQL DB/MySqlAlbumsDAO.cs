@@ -229,11 +229,11 @@ namespace Online_Music_Player_From_SQL_DB
                     // getting data track by track
                     Track track = new Track
                     {
-                        ID = reader.GetInt32(0),
-                        Name = reader.GetString(1),
-                        Number = reader.GetInt32(2),
+                        TrackID = reader.GetInt32(0),
+                        TrackName = reader.GetString(1),
+                        TrackNumber = reader.GetInt32(2),
                         VideoURL = reader.GetString(3),
-                        Lyrics = reader.GetString(4)
+                        TrackLyrics = reader.GetString(4)
                     };
                     returnThese.Add(track);
                 }

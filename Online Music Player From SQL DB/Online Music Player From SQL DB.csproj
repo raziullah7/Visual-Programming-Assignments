@@ -113,6 +113,11 @@
       <DependentUpon>AddTrack.cs</DependentUpon>
     </Compile>
     <Compile Include="Album.cs" />
+    <Compile Include="MUSICDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MUSICDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SqlAlbumDAO.cs" />
     <Compile Include="DeleteForm.cs">
       <SubType>Form</SubType>
@@ -161,6 +166,17 @@
     <EmbeddedResource Include="UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="MUSICDataSet.xsc">
+      <DependentUpon>MUSICDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MUSICDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MUSICDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MUSICDataSet.xss">
+      <DependentUpon>MUSICDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
