@@ -81,7 +81,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(62, 252);
+            this.label5.Location = new System.Drawing.Point(62, 212);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 24);
             this.label5.TabIndex = 4;
@@ -102,7 +102,7 @@
             this.txt_track_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_track_name.Location = new System.Drawing.Point(157, 68);
             this.txt_track_name.Name = "txt_track_name";
-            this.txt_track_name.Size = new System.Drawing.Size(210, 26);
+            this.txt_track_name.Size = new System.Drawing.Size(246, 26);
             this.txt_track_name.TabIndex = 7;
             this.txt_track_name.TextChanged += new System.EventHandler(this.txt_track_name_TextChanged);
             // 
@@ -111,7 +111,7 @@
             this.txt_track_num.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_track_num.Location = new System.Drawing.Point(157, 116);
             this.txt_track_num.Name = "txt_track_num";
-            this.txt_track_num.Size = new System.Drawing.Size(210, 26);
+            this.txt_track_num.Size = new System.Drawing.Size(246, 26);
             this.txt_track_num.TabIndex = 8;
             // 
             // txt_video_url
@@ -119,7 +119,7 @@
             this.txt_video_url.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_video_url.Location = new System.Drawing.Point(157, 164);
             this.txt_video_url.Name = "txt_video_url";
-            this.txt_video_url.Size = new System.Drawing.Size(210, 26);
+            this.txt_video_url.Size = new System.Drawing.Size(246, 26);
             this.txt_video_url.TabIndex = 9;
             // 
             // txt_lyrics
@@ -143,7 +143,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(425, 334);
+            this.button1.Location = new System.Drawing.Point(425, 282);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 45);
             this.button1.TabIndex = 12;
@@ -155,9 +155,9 @@
             // 
             this.album_id_dropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.album_id_dropdown.FormattingEnabled = true;
-            this.album_id_dropdown.Location = new System.Drawing.Point(157, 252);
+            this.album_id_dropdown.Location = new System.Drawing.Point(157, 212);
             this.album_id_dropdown.Name = "album_id_dropdown";
-            this.album_id_dropdown.Size = new System.Drawing.Size(210, 28);
+            this.album_id_dropdown.Size = new System.Drawing.Size(246, 28);
             this.album_id_dropdown.TabIndex = 13;
             // 
             // mUSICDataSet
@@ -174,7 +174,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 366);
             this.Controls.Add(this.album_id_dropdown);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);

@@ -11,6 +11,7 @@ namespace Online_Music_Player_From_SQL_DB
     internal static class ExportAlbum
     {
         public static Album exportAlbum { get; set; }
+        public static Track exportTrack { get; set; }
         public static Album selectedAlbum { get; set; }
         public static Track selectedTrack { get; set; }
     }

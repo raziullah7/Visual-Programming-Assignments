@@ -212,6 +212,40 @@ namespace Online_Music_Player_From_SQL_DB
         }
 
 
+        public int updateOneTrack(Track track)
+        {
+            // creating sql connection
+            SqlConnection connection = new SqlConnection(connectionString);
+            // opening connection
+            connection.Open();
+
+            // writing the query (original albums table)
+            //string query = "INSERT INTO `albums` (`ALBUM_NAME`, `ARTIST`, `YEAR`, `IMAGE_NAME`, `DESCRIPTION`) VALUES (@albumName, @artistName, @year, @imageURL, @description)";
+            // using a copy of albums table for testing
+            string query = "UPDATE fake_tracks SET TRACK_TITLE = @trackName, TRACK_NUMBER = @trackNumber, VIDEO_URL = @videoUrl, TRACK_LYRICS = @trackLyrics, ALBUM_ID = @albumId WHERE TRACK_ID = @trackID";
+
+            // creating sql command
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // adjusting parameters AddWithValue("arbitraryName", realValue)
+            command.Parameters.AddWithValue("@trackID", track.TrackID);
+            command.Parameters.AddWithValue("@trackName", track.TrackName);
+            command.Parameters.AddWithValue("@trackNumber", track.TrackNumber);
+            command.Parameters.AddWithValue("@videoUrl", track.VideoURL);
+            command.Parameters.AddWithValue("@trackLyrics", track.TrackLyrics);
+            command.Parameters.AddWithValue("@albumId", track.AlbumID);
+
+            // executing the command
+            int alteredRows = command.ExecuteNonQuery();
+
+            // closing connection
+            connection.Close();
+
+            // returning the result
+            return alteredRows;
+        }
+
+
         public int deleteOneAlbum(Album album)
         {
             // creating sql connection
@@ -241,6 +275,35 @@ namespace Online_Music_Player_From_SQL_DB
         }
 
 
+        public int deleteOneTrack(Track track)
+        {
+            // creating sql connection
+            SqlConnection connection = new SqlConnection(connectionString);
+            // opening connection
+            connection.Open();
+
+            // writing the query (original albums table)
+            // string query = "DELETE FROM `albums` WHERE `ALBUM_ID`=@albumId";
+
+            string query = "DELETE FROM fake_tracks WHERE TRACK_ID = @trackId";
+
+            // creating sql command
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // adjusting parameters AddWithValue("arbitraryName", realValue)
+            command.Parameters.AddWithValue("@trackId", track.TrackID);
+
+            // executing the command
+            int deletedRows = command.ExecuteNonQuery();
+
+            // closing connection
+            connection.Close();
+
+            // returning the result
+            return deletedRows;
+        }
+
+
         public List<Track> getTracksForAlbum(int albumID)
         {
             // empty list of tracks
@@ -251,7 +314,7 @@ namespace Online_Music_Player_From_SQL_DB
             connection.Open();
 
             // making sqlCommand
-            SqlCommand command = new SqlCommand("SELECT * FROM TRACKS WHERE album_ID = @albumid", connection);
+            SqlCommand command = new SqlCommand("SELECT * FROM FAKE_TRACKS WHERE album_ID = @albumid", connection);
             // adding query to sqlCommand
             // command.CommandText = "SELECT * FROM TRACKS WHERE albums_ID = @albumid";
 

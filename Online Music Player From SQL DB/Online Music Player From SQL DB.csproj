@@ -113,6 +113,12 @@
       <DependentUpon>AddTrack.cs</DependentUpon>
     </Compile>
     <Compile Include="Album.cs" />
+    <Compile Include="DeleteTrack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteTrack.Designer.cs">
+      <DependentUpon>DeleteTrack.cs</DependentUpon>
+    </Compile>
     <Compile Include="MUSICDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -142,6 +148,12 @@
     <Compile Include="UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateTrack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateTrack.Designer.cs">
+      <DependentUpon>UpdateTrack.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteForm.resx">
       <DependentUpon>DeleteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteTrack.resx">
+      <DependentUpon>DeleteTrack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -165,6 +180,9 @@
     </Compile>
     <EmbeddedResource Include="UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateTrack.resx">
+      <DependentUpon>UpdateTrack.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="MUSICDataSet.xsc">
       <DependentUpon>MUSICDataSet.xsd</DependentUpon>

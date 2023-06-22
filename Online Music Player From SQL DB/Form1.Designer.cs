@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.delete_album_btn = new System.Windows.Forms.Button();
+            this.update_album_btn = new System.Windows.Forms.Button();
             this.play_track_btn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -62,6 +64,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.delete_album_btn);
+            this.tabPage1.Controls.Add(this.update_album_btn);
             this.tabPage1.Controls.Add(this.play_track_btn);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.textBox1);
@@ -77,14 +81,38 @@
             this.tabPage1.Text = "View Albums";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // delete_album_btn
+            // 
+            this.delete_album_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.delete_album_btn.ForeColor = System.Drawing.SystemColors.Control;
+            this.delete_album_btn.Location = new System.Drawing.Point(758, 315);
+            this.delete_album_btn.Name = "delete_album_btn";
+            this.delete_album_btn.Size = new System.Drawing.Size(150, 39);
+            this.delete_album_btn.TabIndex = 15;
+            this.delete_album_btn.Text = "Delete Track";
+            this.delete_album_btn.UseVisualStyleBackColor = false;
+            this.delete_album_btn.Click += new System.EventHandler(this.delete_album_btn_Click);
+            // 
+            // update_album_btn
+            // 
+            this.update_album_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
+            this.update_album_btn.ForeColor = System.Drawing.SystemColors.Control;
+            this.update_album_btn.Location = new System.Drawing.Point(602, 315);
+            this.update_album_btn.Name = "update_album_btn";
+            this.update_album_btn.Size = new System.Drawing.Size(150, 39);
+            this.update_album_btn.TabIndex = 14;
+            this.update_album_btn.Text = "Update Track";
+            this.update_album_btn.UseVisualStyleBackColor = false;
+            this.update_album_btn.Click += new System.EventHandler(this.update_album_btn_Click);
+            // 
             // play_track_btn
             // 
             this.play_track_btn.BackColor = System.Drawing.Color.LimeGreen;
             this.play_track_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.play_track_btn.ForeColor = System.Drawing.SystemColors.Info;
-            this.play_track_btn.Location = new System.Drawing.Point(26, 502);
+            this.play_track_btn.Location = new System.Drawing.Point(446, 315);
             this.play_track_btn.Name = "play_track_btn";
-            this.play_track_btn.Size = new System.Drawing.Size(149, 39);
+            this.play_track_btn.Size = new System.Drawing.Size(150, 39);
             this.play_track_btn.TabIndex = 13;
             this.play_track_btn.Text = "▶   Play Track";
             this.play_track_btn.UseVisualStyleBackColor = false;
@@ -94,7 +122,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(203, 311);
+            this.label6.Location = new System.Drawing.Point(253, 329);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 25);
             this.label6.TabIndex = 12;
@@ -114,7 +142,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 299);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.Size = new System.Drawing.Size(250, 250);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
@@ -123,11 +151,12 @@
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(203, 339);
+            this.dataGridView2.Location = new System.Drawing.Point(253, 360);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(719, 204);
+            this.dataGridView2.Size = new System.Drawing.Size(669, 183);
             this.dataGridView2.TabIndex = 9;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
+            this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellDoubleClick);
             // 
             // dataGridView1
             // 
@@ -217,6 +246,8 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button play_track_btn;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button delete_album_btn;
+        private System.Windows.Forms.Button update_album_btn;
     }
 }
 

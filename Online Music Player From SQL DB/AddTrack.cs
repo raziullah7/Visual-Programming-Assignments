@@ -50,7 +50,7 @@ namespace Online_Music_Player_From_SQL_DB
                 TrackLyrics = txt_lyrics.Text,
                 AlbumID = Convert.ToInt32(words[0]),
             };
-            MessageBox.Show($"Album's ID : {track.AlbumID}");
+
             int newTracks = sqlAlbumsDAO.addOneTrack(track);
             MessageBox.Show($"  {newTracks} new track(s) added! ");
         }

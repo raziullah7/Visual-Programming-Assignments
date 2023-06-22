@@ -159,8 +159,6 @@ namespace Online_Music_Player_From_SQL_DB
 
 
         // -------------------------------------------------------------------------- //
-        private void textBox1_TextChanged(object sender, EventArgs e) { }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e) {
             // storing the sender of the datagridview to get which
@@ -173,8 +171,10 @@ namespace Online_Music_Player_From_SQL_DB
 
             // selecting the track for "Play Track" button
             ExportAlbum.selectedTrack = ExportAlbum.selectedAlbum.Tracks[rowClicked];
-        }
 
+            // exporting the selected track
+            // ExportAlbum.exportTrack = ExportAlbum.exportAlbum.Tracks[rowClicked];
+        }
 
         private void Form1_Load(object sender, EventArgs e) {
             // making the first and second columns of dataGridView1 red and green respectively
@@ -206,6 +206,25 @@ namespace Online_Music_Player_From_SQL_DB
             AddTrack addTrack = new AddTrack();
             addTrack.Text = "Add A Track";
             addTrack.Show();
+        }
+        
+
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+
+        private void update_album_btn_Click(object sender, EventArgs e)
+        {
+            UpdateTrack updateTrack = new UpdateTrack();
+            updateTrack.Text = "Update A Track";
+            updateTrack.Show();
+        }
+
+        private void delete_album_btn_Click(object sender, EventArgs e)
+        {
+            DeleteTrack deleteTrack = new DeleteTrack();
+            deleteTrack.Text = "Delete A Track";
+            deleteTrack.Show();
         }
     }
 }
