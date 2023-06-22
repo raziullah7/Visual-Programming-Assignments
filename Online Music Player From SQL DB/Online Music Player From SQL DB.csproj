@@ -39,6 +39,9 @@
     <Reference Include="CloudinaryDotNet, Version=1.20.0.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
       <HintPath>packages\CloudinaryDotNet.1.20.0\lib\net452\CloudinaryDotNet.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.20.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.20.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.21.9.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.21.9\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -98,6 +101,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddForm.cs">

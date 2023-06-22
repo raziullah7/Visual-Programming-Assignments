@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using Microsoft.Office.Interop.Excel;
 using System.IO;
-// using System.Data.SqlClient;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System.Data;
 
 namespace Online_Music_Player_From_SQL_DB
 {
@@ -437,13 +440,13 @@ namespace Online_Music_Player_From_SQL_DB
         }
 
 
-        public void generateTracksExcelFile()
+        public void generateTracksExcelReport()
         {
             string currentdatetime = DateTime.Now.ToString("yyyyMMddHHmmss");
             string LogFolder = @"D:\Files\Logs";
             // string connectionString = @"Server=DESKTOP-EKJ1P64\SQL2019;Database=Test;Integrated Security=True;";
             string queryString = "select * from fake_tracks";
-            string filePath = @"D:\Files\Fake_Tracks.XLSX";
+            string filePath = @"D:\Files\Excel Reports\Fake_Tracks.XLSX";
 
             try
             {
@@ -504,13 +507,13 @@ namespace Online_Music_Player_From_SQL_DB
         }
 
 
-        public void generateAlbumsExcelFile()
+        public void generateAlbumsExcelReport()
         {
             string currentdatetime = DateTime.Now.ToString("yyyyMMddHHmmss");
             string LogFolder = @"D:\Files\Logs";
             // string connectionString = @"Server=DESKTOP-EKJ1P64\SQL2019;Database=Test;Integrated Security=True;";
             string queryString = "select * from fake_tracks";
-            string filePath = @"D:\Files\Fake_Albums.XLSX";
+            string filePath = @"D:\Files\Excel Reports\Fake_Albums.XLSX";
 
             try
             {
@@ -567,6 +570,100 @@ namespace Online_Music_Player_From_SQL_DB
                     sw.WriteLine(exception.ToString());
                 }
 
+            }
+        }
+
+
+        public void generateTracksWordReport()
+        {
+            string query = "SELECT * FROM fake_tracks";
+            System.Data.DataTable dataTable = new System.Data.DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    dataTable.Load(reader);
+                }
+            }
+            // storing the file storage path
+            string fileName = "D:\\Files\\Word Reports\\Fake_Tracks.docx";
+            // creating Word document
+            using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(fileName, WordprocessingDocumentType.Document))
+            {
+                MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
+                mainPart.Document = new Document();
+                Body body = mainPart.Document.AppendChild(new Body());
+                Paragraph para = body.AppendChild(new Paragraph());
+                Run run = para.AppendChild(new Run());
+                run.AppendChild(new Text("SQL Server Data Export"));
+
+                // Iterate through the DataTable and add the data to the Word document
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    para = body.AppendChild(new Paragraph());
+                    run = para.AppendChild(new Run());
+
+                    // Iterate through the columns
+                    for (int i = 0; i < dataTable.Columns.Count; i++)
+                    {
+                        run.AppendChild(new Text(row[i].ToString()));
+                        run.AppendChild(new Break());
+                    }
+                }
+
+                // Save and close the Word document
+                wordDocument.Save();
+                wordDocument.Close();
+            }
+        }
+
+
+        public void generateAlbumsWordReport()
+        {
+            string query = "SELECT * FROM fake_albums";
+            System.Data.DataTable dataTable = new System.Data.DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    dataTable.Load(reader);
+                }
+            }
+            // storing the file storage path
+            string fileName = "D:\\Files\\Word Reports\\Fake_Albums.docx";
+            // creating Word document
+            using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(fileName, WordprocessingDocumentType.Document))
+            {
+                MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
+                mainPart.Document = new Document();
+                Body body = mainPart.Document.AppendChild(new Body());
+                Paragraph para = body.AppendChild(new Paragraph());
+                Run run = para.AppendChild(new Run());
+                run.AppendChild(new Text("SQL Server Data Export"));
+
+                // Iterate through the DataTable and add the data to the Word document
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    para = body.AppendChild(new Paragraph());
+                    run = para.AppendChild(new Run());
+
+                    // Iterate through the columns
+                    for (int i = 0; i < dataTable.Columns.Count; i++)
+                    {
+                        run.AppendChild(new Text(row[i].ToString()));
+                        run.AppendChild(new Break());
+                    }
+                }
+
+                // Save and close the Word document
+                wordDocument.Save();
+                wordDocument.Close();
             }
         }
     }

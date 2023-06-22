@@ -45,6 +45,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tracks_excel_report = new System.Windows.Forms.Button();
             this.albums_excel_report = new System.Windows.Forms.Button();
+            this.tracks_word_report = new System.Windows.Forms.Button();
+            this.albums_word_report = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -183,6 +185,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.albums_word_report);
+            this.tabPage2.Controls.Add(this.tracks_word_report);
             this.tabPage2.Controls.Add(this.albums_excel_report);
             this.tabPage2.Controls.Add(this.tracks_excel_report);
             this.tabPage2.Controls.Add(this.button1);
@@ -235,6 +239,26 @@
             this.albums_excel_report.UseVisualStyleBackColor = true;
             this.albums_excel_report.Click += new System.EventHandler(this.albums_excel_report_Click);
             // 
+            // tracks_word_report
+            // 
+            this.tracks_word_report.Location = new System.Drawing.Point(521, 246);
+            this.tracks_word_report.Name = "tracks_word_report";
+            this.tracks_word_report.Size = new System.Drawing.Size(120, 55);
+            this.tracks_word_report.TabIndex = 14;
+            this.tracks_word_report.Text = "Tracks.DOCX";
+            this.tracks_word_report.UseVisualStyleBackColor = true;
+            this.tracks_word_report.Click += new System.EventHandler(this.tracks_word_report_Click);
+            // 
+            // albums_word_report
+            // 
+            this.albums_word_report.Location = new System.Drawing.Point(687, 246);
+            this.albums_word_report.Name = "albums_word_report";
+            this.albums_word_report.Size = new System.Drawing.Size(120, 55);
+            this.albums_word_report.TabIndex = 15;
+            this.albums_word_report.Text = "Albums.DOCX";
+            this.albums_word_report.UseVisualStyleBackColor = true;
+            this.albums_word_report.Click += new System.EventHandler(this.albums_word_report_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,6 +298,8 @@
         private System.Windows.Forms.Button update_album_btn;
         private System.Windows.Forms.Button tracks_excel_report;
         private System.Windows.Forms.Button albums_excel_report;
+        private System.Windows.Forms.Button albums_word_report;
+        private System.Windows.Forms.Button tracks_word_report;
     }
 }
 

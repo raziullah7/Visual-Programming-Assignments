@@ -230,15 +230,29 @@ namespace Online_Music_Player_From_SQL_DB
         private void tracks_excel_report_Click(object sender, EventArgs e)
         {
             SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
-            sqlAlbumsDAO.generateTracksExcelFile();
-            MessageBox.Show("   Tracks Crystal Report Successfully Generated!  ");
+            sqlAlbumsDAO.generateTracksExcelReport();
+            MessageBox.Show("Tracks EXCEL Crystal Report Successfully Generated!");
         }
 
         private void albums_excel_report_Click(object sender, EventArgs e)
         {
             SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
-            sqlAlbumsDAO.generateAlbumsExcelFile();
-            MessageBox.Show("   Albums Crystal Report Successfully Generated!  ");
+            sqlAlbumsDAO.generateAlbumsExcelReport();
+            MessageBox.Show("Albums EXCEL Crystal Report Successfully Generated!");
+        }
+
+        private void tracks_word_report_Click(object sender, EventArgs e)
+        {
+            SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
+            sqlAlbumsDAO.generateTracksWordReport();
+            MessageBox.Show("Albums WORD Crystal Report Successfully Generated!");
+        }
+
+        private void albums_word_report_Click(object sender, EventArgs e)
+        {
+            SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
+            sqlAlbumsDAO.generateAlbumsWordReport();
+            MessageBox.Show("Albums WORD Crystal Report Successfully Generated!");
         }
     }
 }
