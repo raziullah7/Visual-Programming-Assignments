@@ -47,25 +47,19 @@ namespace Online_Music_Player_From_SQL_DB
 
         private void DeleteForm_Load(object sender, EventArgs e) {
             // getting the passed album
-            Album passedAlbum = ExportAlbum.exportAlbum;
+            Album passedAlbum = ExportAlbum.selectedAlbum;
 
+            // making dynammic label
             Label albumNameLabel = new Label
             {
-                Text = $"Album Name : {passedAlbum.AlbumName}",
-                Location = new Point(12, 90),
-                MaximumSize = new Size(200, 20),
-                Font = new Font("Arial", 14)
+                Text = $"Album Name : {passedAlbum.AlbumName}\n" +
+                $"Artist Name : {passedAlbum.ArtistName}\n" +
+                $"Image URL : {passedAlbum.ImageURL}",
+                Location = new Point(30, 75),
+                AutoSize = true,
+                Font = new Font("Calibri", 12),
             };
             Controls.Add(albumNameLabel);
-
-            Label artistLabel = new Label
-            {
-                Text = $"Artist Name : {passedAlbum.ArtistName}",
-                Location = new Point(12, 150),
-                MaximumSize = new Size(200, 20),
-                Font = new Font("Arial", 14)
-            };
-            Controls.Add((albumNameLabel));
         }
     }
 }
