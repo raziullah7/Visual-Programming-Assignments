@@ -1,8 +1,9 @@
-﻿using MySql.Data.MySqlClient;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Microsoft.Office.Interop.Excel;
+using System.IO;
 // using System.Data.SqlClient;
 
 namespace Online_Music_Player_From_SQL_DB
@@ -23,7 +24,8 @@ namespace Online_Music_Player_From_SQL_DB
             // opening connection to SQL server
 
             // writing sql query  
-            SqlCommand cmd = new SqlCommand {
+            SqlCommand cmd = new SqlCommand
+            {
                 CommandText = "SELECT ALBUM_ID, ALBUM_NAME, ARTIST, YEAR, IMAGE_NAME, DESCRIPTION FROM FAKE_ALBUMS",
                 Connection = connection
             };
@@ -394,7 +396,7 @@ namespace Online_Music_Player_From_SQL_DB
             return returnThese;
         }
 
-        
+
         private int getNextAlbumID()
         {
             SqlConnection sqlConnection = new SqlConnection(connectionString);
@@ -407,7 +409,7 @@ namespace Online_Music_Player_From_SQL_DB
 
             int ID = 0;
             SqlDataReader reader = command.ExecuteReader();
-            while(reader.Read())
+            while (reader.Read())
             {
                 ID = Convert.ToInt32(reader["new_id"]);
             }
@@ -432,6 +434,140 @@ namespace Online_Music_Player_From_SQL_DB
                 ID = Convert.ToInt32(reader["new_id"]);
             }
             return ID;
+        }
+
+
+        public void generateTracksExcelFile()
+        {
+            string currentdatetime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string LogFolder = @"D:\Files\Logs";
+            // string connectionString = @"Server=DESKTOP-EKJ1P64\SQL2019;Database=Test;Integrated Security=True;";
+            string queryString = "select * from fake_tracks";
+            string filePath = @"D:\Files\Fake_Tracks.XLSX";
+
+            try
+            {
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
+
+                // Connect to the SQL Server database and retrieve the data you want to export
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(queryString, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Create a new Excel application and workbook
+                            Application excelApp = new Application();
+                            Workbook excelWorkbook = excelApp.Workbooks.Add();
+                            Worksheet excelWorksheet = excelWorkbook.Worksheets[1];
+
+                            // Add the headers to the first row
+                            int col = 1;
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                excelWorksheet.Cells[1, col].Value2 = reader.GetName(i);
+                                col++;
+                            }
+
+                            // Iterate through the rows of data and insert them into the worksheet, starting from the second row
+                            int row = 2;
+                            while (reader.Read())
+                            {
+                                col = 1;
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    excelWorksheet.Cells[row, col].Value2 = reader[i];
+                                    col++;
+                                }
+                                row++;
+                            }
+
+                            // Save the workbook and close the Excel application
+                            excelWorkbook.SaveAs(filePath);
+                            excelWorkbook.Close();
+                            excelApp.Quit();
+                        }
+                    }
+                }
+            }
+
+            catch (Exception exception)
+            {
+                using (StreamWriter sw = File.CreateText(LogFolder + "\\" + "ErrorLog_" + currentdatetime + ".log"))
+                {
+                    sw.WriteLine(exception.ToString());
+                }
+
+            }
+        }
+
+
+        public void generateAlbumsExcelFile()
+        {
+            string currentdatetime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string LogFolder = @"D:\Files\Logs";
+            // string connectionString = @"Server=DESKTOP-EKJ1P64\SQL2019;Database=Test;Integrated Security=True;";
+            string queryString = "select * from fake_tracks";
+            string filePath = @"D:\Files\Fake_Albums.XLSX";
+
+            try
+            {
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
+
+                // Connect to the SQL Server database and retrieve the data you want to export
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(queryString, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Create a new Excel application and workbook
+                            Application excelApp = new Application();
+                            Workbook excelWorkbook = excelApp.Workbooks.Add();
+                            Worksheet excelWorksheet = excelWorkbook.Worksheets[1];
+
+                            // Add the headers to the first row
+                            int col = 1;
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                excelWorksheet.Cells[1, col].Value2 = reader.GetName(i);
+                                col++;
+                            }
+
+                            // Iterate through the rows of data and insert them into the worksheet, starting from the second row
+                            int row = 2;
+                            while (reader.Read())
+                            {
+                                col = 1;
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    excelWorksheet.Cells[row, col].Value2 = reader[i];
+                                    col++;
+                                }
+                                row++;
+                            }
+
+                            // Save the workbook and close the Excel application
+                            excelWorkbook.SaveAs(filePath);
+                            excelWorkbook.Close();
+                            excelApp.Quit();
+                        }
+                    }
+                }
+            }
+
+            catch (Exception exception)
+            {
+                using (StreamWriter sw = File.CreateText(LogFolder + "\\" + "ErrorLog_" + currentdatetime + ".log"))
+                {
+                    sw.WriteLine(exception.ToString());
+                }
+
+            }
         }
     }
 }

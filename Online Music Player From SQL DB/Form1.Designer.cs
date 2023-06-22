@@ -43,6 +43,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.add_btn = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.tracks_excel_report = new System.Windows.Forms.Button();
+            this.albums_excel_report = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -181,6 +183,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.albums_excel_report);
+            this.tabPage2.Controls.Add(this.tracks_excel_report);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.add_btn);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
@@ -210,6 +214,26 @@
             this.add_btn.Text = "Add Album";
             this.add_btn.UseVisualStyleBackColor = true;
             this.add_btn.Click += new System.EventHandler(this.add_btn_Click_1);
+            // 
+            // tracks_excel_report
+            // 
+            this.tracks_excel_report.Location = new System.Drawing.Point(521, 115);
+            this.tracks_excel_report.Name = "tracks_excel_report";
+            this.tracks_excel_report.Size = new System.Drawing.Size(120, 55);
+            this.tracks_excel_report.TabIndex = 12;
+            this.tracks_excel_report.Text = "Tracks.XLSX";
+            this.tracks_excel_report.UseVisualStyleBackColor = true;
+            this.tracks_excel_report.Click += new System.EventHandler(this.tracks_excel_report_Click);
+            // 
+            // albums_excel_report
+            // 
+            this.albums_excel_report.Location = new System.Drawing.Point(687, 115);
+            this.albums_excel_report.Name = "albums_excel_report";
+            this.albums_excel_report.Size = new System.Drawing.Size(120, 55);
+            this.albums_excel_report.TabIndex = 13;
+            this.albums_excel_report.Text = "Albums.XLSX";
+            this.albums_excel_report.UseVisualStyleBackColor = true;
+            this.albums_excel_report.Click += new System.EventHandler(this.albums_excel_report_Click);
             // 
             // Form1
             // 
@@ -248,6 +272,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button delete_album_btn;
         private System.Windows.Forms.Button update_album_btn;
+        private System.Windows.Forms.Button tracks_excel_report;
+        private System.Windows.Forms.Button albums_excel_report;
     }
 }
 

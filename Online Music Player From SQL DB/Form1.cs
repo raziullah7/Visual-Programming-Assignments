@@ -226,5 +226,19 @@ namespace Online_Music_Player_From_SQL_DB
             deleteTrack.Text = "Delete A Track";
             deleteTrack.Show();
         }
+
+        private void tracks_excel_report_Click(object sender, EventArgs e)
+        {
+            SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
+            sqlAlbumsDAO.generateTracksExcelFile();
+            MessageBox.Show("   Tracks Crystal Report Successfully Generated!  ");
+        }
+
+        private void albums_excel_report_Click(object sender, EventArgs e)
+        {
+            SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
+            sqlAlbumsDAO.generateAlbumsExcelFile();
+            MessageBox.Show("   Albums Crystal Report Successfully Generated!  ");
+        }
     }
 }
