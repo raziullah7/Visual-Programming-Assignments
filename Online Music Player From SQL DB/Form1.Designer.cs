@@ -45,8 +45,10 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tracks_excel_report = new System.Windows.Forms.Button();
             this.albums_excel_report = new System.Windows.Forms.Button();
-            this.tracks_word_report = new System.Windows.Forms.Button();
             this.albums_word_report = new System.Windows.Forms.Button();
+            this.albums_pdf_report = new System.Windows.Forms.Button();
+            this.tracks_word_report = new System.Windows.Forms.Button();
+            this.tracks_pdf_report = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -185,6 +187,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.tracks_pdf_report);
+            this.tabPage2.Controls.Add(this.albums_pdf_report);
             this.tabPage2.Controls.Add(this.albums_word_report);
             this.tabPage2.Controls.Add(this.tracks_word_report);
             this.tabPage2.Controls.Add(this.albums_excel_report);
@@ -239,6 +243,26 @@
             this.albums_excel_report.UseVisualStyleBackColor = true;
             this.albums_excel_report.Click += new System.EventHandler(this.albums_excel_report_Click);
             // 
+            // albums_word_report
+            // 
+            this.albums_word_report.Location = new System.Drawing.Point(687, 246);
+            this.albums_word_report.Name = "albums_word_report";
+            this.albums_word_report.Size = new System.Drawing.Size(120, 55);
+            this.albums_word_report.TabIndex = 15;
+            this.albums_word_report.Text = "Albums.DOCX";
+            this.albums_word_report.UseVisualStyleBackColor = true;
+            this.albums_word_report.Click += new System.EventHandler(this.albums_word_report_Click);
+            // 
+            // albums_pdf_report
+            // 
+            this.albums_pdf_report.Location = new System.Drawing.Point(687, 386);
+            this.albums_pdf_report.Name = "albums_pdf_report";
+            this.albums_pdf_report.Size = new System.Drawing.Size(120, 55);
+            this.albums_pdf_report.TabIndex = 17;
+            this.albums_pdf_report.Text = "Albums.PDF";
+            this.albums_pdf_report.UseVisualStyleBackColor = true;
+            this.albums_pdf_report.Click += new System.EventHandler(this.albums_pdf_report_Click);
+            // 
             // tracks_word_report
             // 
             this.tracks_word_report.Location = new System.Drawing.Point(521, 246);
@@ -249,15 +273,15 @@
             this.tracks_word_report.UseVisualStyleBackColor = true;
             this.tracks_word_report.Click += new System.EventHandler(this.tracks_word_report_Click);
             // 
-            // albums_word_report
+            // tracks_pdf_report
             // 
-            this.albums_word_report.Location = new System.Drawing.Point(687, 246);
-            this.albums_word_report.Name = "albums_word_report";
-            this.albums_word_report.Size = new System.Drawing.Size(120, 55);
-            this.albums_word_report.TabIndex = 15;
-            this.albums_word_report.Text = "Albums.DOCX";
-            this.albums_word_report.UseVisualStyleBackColor = true;
-            this.albums_word_report.Click += new System.EventHandler(this.albums_word_report_Click);
+            this.tracks_pdf_report.Location = new System.Drawing.Point(521, 386);
+            this.tracks_pdf_report.Name = "tracks_pdf_report";
+            this.tracks_pdf_report.Size = new System.Drawing.Size(120, 55);
+            this.tracks_pdf_report.TabIndex = 18;
+            this.tracks_pdf_report.Text = "Tracks.PDF";
+            this.tracks_pdf_report.UseVisualStyleBackColor = true;
+            this.tracks_pdf_report.Click += new System.EventHandler(this.tracks_pdf_report_Click);
             // 
             // Form1
             // 
@@ -299,6 +323,8 @@
         private System.Windows.Forms.Button tracks_excel_report;
         private System.Windows.Forms.Button albums_excel_report;
         private System.Windows.Forms.Button albums_word_report;
+        private System.Windows.Forms.Button albums_pdf_report;
+        private System.Windows.Forms.Button tracks_pdf_report;
         private System.Windows.Forms.Button tracks_word_report;
     }
 }

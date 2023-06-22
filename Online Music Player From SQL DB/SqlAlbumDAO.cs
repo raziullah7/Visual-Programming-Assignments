@@ -8,6 +8,9 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Data;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Paragraph = DocumentFormat.OpenXml.Wordprocessing.Paragraph;
 
 namespace Online_Music_Player_From_SQL_DB
 {
@@ -594,7 +597,7 @@ namespace Online_Music_Player_From_SQL_DB
             using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(fileName, WordprocessingDocumentType.Document))
             {
                 MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
-                mainPart.Document = new Document();
+                mainPart.Document = new DocumentFormat.OpenXml.Wordprocessing.Document();
                 Body body = mainPart.Document.AppendChild(new Body());
                 Paragraph para = body.AppendChild(new Paragraph());
                 Run run = para.AppendChild(new Run());
@@ -616,7 +619,6 @@ namespace Online_Music_Player_From_SQL_DB
 
                 // Save and close the Word document
                 wordDocument.Save();
-                wordDocument.Close();
             }
         }
 
@@ -641,7 +643,7 @@ namespace Online_Music_Player_From_SQL_DB
             using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(fileName, WordprocessingDocumentType.Document))
             {
                 MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
-                mainPart.Document = new Document();
+                mainPart.Document = new DocumentFormat.OpenXml.Wordprocessing.Document();
                 Body body = mainPart.Document.AppendChild(new Body());
                 Paragraph para = body.AppendChild(new Paragraph());
                 Run run = para.AppendChild(new Run());
@@ -663,7 +665,104 @@ namespace Online_Music_Player_From_SQL_DB
 
                 // Save and close the Word document
                 wordDocument.Save();
-                wordDocument.Close();
+            }
+        }
+
+
+        public void generateTracksPdfReport()
+        {
+            // SQL query to retrieve data
+            string query = "SELECT * FROM fake_tracks";
+
+            // Create a SqlConnection and SqlCommand to execute the query
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+
+                    // Execute the query and retrieve the data into a SqlDataReader
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Create a new PDF document
+                        iTextSharp.text.Document document = new iTextSharp.text.Document();
+                        PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("D:\\Files\\PDF Reports\\Fake_Tracks.pdf", FileMode.Create));
+                        document.Open();
+
+                        // Create a PdfPTable to hold the data
+                        PdfPTable table = new PdfPTable(reader.FieldCount);
+
+                        // Add table headers
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            table.AddCell(reader.GetName(i));
+                        }
+
+                        // Add table rows
+                        while (reader.Read())
+                        {
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                table.AddCell(reader[i].ToString());
+                            }
+                        }
+
+                        // Add the table to the document
+                        document.Add(table);
+
+                        // Close the document
+                        document.Close();
+                    }
+                }
+            }
+        }
+
+
+        public void generateAlbumsPdfReport()
+        {
+            // SQL query to retrieve data
+            string query = "SELECT * FROM fake_albums";
+
+            // Create a SqlConnection and SqlCommand to execute the query
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+
+                    // Execute the query and retrieve the data into a SqlDataReader
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Create a new PDF document
+                        iTextSharp.text.Document document = new iTextSharp.text.Document();
+                        PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("D:\\Files\\PDF Reports\\Fake_Albums.pdf", FileMode.Create));
+                        document.Open();
+
+                        // Create a PdfPTable to hold the data
+                        PdfPTable table = new PdfPTable(reader.FieldCount);
+
+                        // Add table headers
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            table.AddCell(reader.GetName(i));
+                        }
+
+                        // Add table rows
+                        while (reader.Read())
+                        {
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                table.AddCell(reader[i].ToString());
+                            }
+                        }
+
+                        // Add the table to the document
+                        document.Add(table);
+
+                        // Close the document
+                        document.Close();
+                    }
+                }
             }
         }
     }

@@ -208,11 +208,6 @@ namespace Online_Music_Player_From_SQL_DB
             addTrack.Show();
         }
         
-
-        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e) { }
-        private void textBox1_TextChanged(object sender, EventArgs e) { }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-
         private void update_album_btn_Click(object sender, EventArgs e)
         {
             UpdateTrack updateTrack = new UpdateTrack();
@@ -254,5 +249,25 @@ namespace Online_Music_Player_From_SQL_DB
             sqlAlbumsDAO.generateAlbumsWordReport();
             MessageBox.Show("Albums WORD Crystal Report Successfully Generated!");
         }
+
+        private void tracks_pdf_report_Click(object sender, EventArgs e)
+        {
+            SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
+            sqlAlbumsDAO.generateTracksPdfReport();
+            MessageBox.Show("Tracks PDF Crystal Report Successfully Generated!");
+        }
+
+        private void albums_pdf_report_Click(object sender, EventArgs e)
+        {
+            SqlAlbumsDAO sqlAlbumsDAO = new SqlAlbumsDAO();
+            sqlAlbumsDAO.generateAlbumsPdfReport();
+            MessageBox.Show("Tracks PDF Crystal Report Successfully Generated!");
+        }
+
+
+        // -----------------------------------------------------------------------
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
     }
 }
